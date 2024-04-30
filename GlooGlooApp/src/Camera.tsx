@@ -1,15 +1,18 @@
-import { useEffect, useRef } from 'react';
-import { useCameraDevice, Camera, useCameraPermission, TakePhotoOptions} from 'react-native-vision-camera';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View, Image } from 'react-native';
 
 function CameraScreen() {
     const { hasPermission, requestPermission } = useCameraPermission()
     const device = useCameraDevice('back')
+    const [photo, setPhoto] = useState<PhotoFile>();
     const camera = useRef<Camera>(null)
     
     const onTakePicturePressed = async () => {
         const photo = await camera.current?.takePhoto({
-          enableShutterSound: false
+          enableShutterSound: false,
+          enablePrecapture: true,
+          qualityPrioritization: 'quality'
         });
         console.log(photo)
         // Magic AI Work then pokedex
@@ -31,6 +34,7 @@ function CameraScreen() {
 
     return (
       <View style={{ flex: 1}}>
+
         <Camera
         ref={camera}
         style={StyleSheet.absoluteFill}
@@ -38,6 +42,7 @@ function CameraScreen() {
         isActive={true}
         photo={true}
         /> 
+
         <Pressable 
             onPress={onTakePicturePressed}
             style={{
