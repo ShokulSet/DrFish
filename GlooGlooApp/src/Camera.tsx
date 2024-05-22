@@ -1,10 +1,47 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View, Modal, } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View, Modal, PermissionsAndroid, Platform } from 'react-native';
+import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 
+const requestPermission = async () => {
+  try {
+    const grantedCamera = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      {
+        title: 'Camera Permission',
+        message:
+          'App needs access to your camera ' +
+          'so you can take pictures.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    const grantedWrite = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      {
+        title: 'Write Permission',
+        message:
+          'App needs access to write file ' +
+          'so you can save picture.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      }
+    )
+    if (grantedCamera === PermissionsAndroid.RESULTS.GRANTED && grantedWrite === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('Permission Granted');
+      return true;
+    } else {
+      console.log('Permission Denied');
+      return false;
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
 
 function CameraScreen() {
-    const { hasPermission, requestPermission } = useCameraPermission()
     const device = useCameraDevice('back')
     const [photo, setPhoto] = useState<PhotoFile>();
     const [modalVisible, setModalVisible] = useState(false);
@@ -17,20 +54,15 @@ function CameraScreen() {
           qualityPrioritization: 'quality'
         });
         console.log(photo)
+        
         // Magic AI Work then pokedex
-        setModalVisible(true)
-    }
-
-    useEffect(() => {
-      if (!hasPermission) {
-        requestPermission();
-      }
-    }, [hasPermission]);
-  
-    if (!hasPermission) {
-      return <ActivityIndicator />;
+        // setModalVisible(true)
     }
     
+    if (!requestPermission()) {
+      requestPermission();
+    }
+
     if (!device) {
       return <Text> Camera not found.</Text>
     }
@@ -46,7 +78,8 @@ function CameraScreen() {
         photo={true}
         /> 
 
-        <Pressable 
+        <Pressable
+            
             onPress={onTakePicturePressed}
             style={({pressed}) => [
               {
