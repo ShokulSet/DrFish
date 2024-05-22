@@ -1,10 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import BootSplash from "react-native-bootsplash";
 import CameraScreen from './src/Camera.tsx'
 import PokedexScreen from './src/Pokedex.tsx'
+import { View } from 'react-native-reanimated/lib/typescript/Animated';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,14 +24,24 @@ function App() {
     });
   }, []);
   return (
-    // navigation bar at the  buttom
     <NavigationContainer>
       <StatusBar hidden />
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{
+        tabBarBackground: () => (
+          <view  style={{backgroundColor:"black"}}/>
+        ), 
+      }}>
       <Tab.Screen name="Cam" component={CameraScreen} />
       <Tab.Screen name="Dex" component={PokedexScreen} />
     </Tab.Navigator>
     </NavigationContainer>
   );
 }
+
 export default App;
+
+const styles = StyleSheet.create({
+  navigatorContainer : {
+    backgroundColor: 'white'
+  }
+})

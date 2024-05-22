@@ -108,6 +108,8 @@ function CameraScreen() {
     )
 }
 
+export default CameraScreen;
+
 const styles = StyleSheet.create({
   buttonContainer : {
     position: 'absolute',
@@ -137,4 +139,3 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CameraScreen;
