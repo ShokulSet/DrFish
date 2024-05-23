@@ -32,9 +32,10 @@ function App() {
           tabBarActiveTintColor: '#FFFFFF',
           tabBarInactiveTintColor: '#545370',
           tabBarLabelStyle: {
-            fontSize: 15,
-            fontWeight: 'bold',
-            fontFamily: 'Dangrek'
+            fontSize: 20,
+            fontFamily: 'Dangrek-Regular',
+            marginTop: -35,
+            marginBottom: 10
           },
           tabBarStyle: {
             height: 100,
@@ -55,7 +56,13 @@ function App() {
           tabBarIcon: ({color}) => (<Icon name="camera" color={color} size={30} />),
         }}
       />
-      <Tab.Screen name="Deck" component={PokedexScreen} />
+      <Tab.Screen name="Deck"
+      component={PokedexScreen}
+      options={{
+        tabBarLabel: 'Deck',
+        tabBarIcon: ({color}) => (<Icon name="book" color={color} size={33} />),
+      }}
+        />
     </Tab.Navigator>
     </NavigationContainer>
   );
