@@ -47,7 +47,7 @@ function App() {
         },
       })}
       >
-      <Tab.Screenrr
+      <Tab.Screen
         name="Camera" 
         component={CameraScreen}
         options={{
