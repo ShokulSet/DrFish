@@ -71,23 +71,24 @@ function CameraScreen() {
       
       <View style={styles.centeredView}>
         <Camera
-        ref={camera}
-        style={StyleSheet.absoluteFill}
-        device={device}
-        isActive={true}
-        photo={true}
+          ref={camera}
+          style={StyleSheet.absoluteFill}
+          device={device}
+          isActive={true}
+          photo={true}
         /> 
 
-        <Pressable
-            
-            onPress={onTakePicturePressed}
-            style={({pressed}) => [
-              {
-                backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
-              },
-              styles.buttonContainer
-            ]}
-        />
+        <View style={styles.buttonBackground}>
+          <Pressable
+              onPress={onTakePicturePressed}
+              style={({pressed}) => [
+                {
+                  backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                },
+                styles.buttonContainer
+              ]}
+          />
+        </View>
 
         <Modal
           animationType="slide"
@@ -114,10 +115,21 @@ const styles = StyleSheet.create({
   buttonContainer : {
     position: 'absolute',
     alignSelf: "center", 
+    bottom: 7, 
+    width: 60, 
+    height: 60, 
+    borderRadius: 50,
+    opacity: 1,
+  },
+  buttonBackground : {
+    position: 'absolute',
+    alignSelf: "center", 
     bottom: 130, 
-    width: 70, 
-    height: 70, 
-    borderRadius: 75
+    width: 75, 
+    height: 75, 
+    borderRadius: 50,
+    opacity: 0.7,
+    backgroundColor: '#FFFFFF'
   },
   centeredView: {
     flex: 1,
