@@ -68,7 +68,7 @@ function CameraScreen() {
     }
 
     return (
-      
+      // Display camera view
       <View style={styles.centeredView}>
         <Camera
           ref={camera}
@@ -77,7 +77,10 @@ function CameraScreen() {
           isActive={true}
           photo={true}
         /> 
+        
+        
 
+        {/* Camera button */}
         <View style={styles.buttonBackground}>
           <Pressable
               onPress={onTakePicturePressed}
