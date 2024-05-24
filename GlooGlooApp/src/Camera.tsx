@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View, Modal, PermissionsAndroid, Platform } from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import FocusSvg from '../assets/svg/Focus.svg'
 
 const requestPermission = async () => {
   try {
@@ -78,7 +79,7 @@ function CameraScreen() {
           photo={true}
         /> 
         
-        
+        <FocusSvg style={{marginBottom: 200}}/>
 
         {/* Camera button */}
         <View style={styles.buttonBackground}>
