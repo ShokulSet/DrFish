@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text } from 'react-native';
+import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text} from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
-import { showMessage, hideMessage } from "react-native-flash-message"
+import { showMessage } from "react-native-flash-message"
+import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -18,13 +19,19 @@ function PreviewScreen({ navigation, route }) {
         backgroundColor: '#0F1035',
         duration: 1000,
       });
-    }
+    };
     const onPressedNext = async () => {
-      // Implement next button functionality here
-    }
+      
+    };
+  
     const onPressedShare = async () => {
-      // Implement share button functionality here
-    }
+      try{
+        console.log("Image Sharing")
+        await Share.open({url: `file://${photo.path}`});
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
     return (
       <ImageBackground source={{ uri: 'file://' + photo.path }} style={StyleSheet.absoluteFill} resizeMode='cover'>
