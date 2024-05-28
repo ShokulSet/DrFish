@@ -1,13 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar, StyleSheet, View } from 'react-native';
 import { useEffect } from 'react';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import BootSplash from "react-native-bootsplash";
 import CameraScreen from './src/Camera.tsx'
 import PokedexScreen from './src/Pokedex.tsx'
 import PreviewScreen from './src/Preview.tsx'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -41,16 +41,17 @@ function CameraStack() {
         component={CameraScreen}
         options={{
           tabBarLabel: 'Camera',
-          tabBarIcon: ({color}) => (<Icon name="camera" color={color} size={31} />),
+          tabBarIcon: ({color}) => (<FontAwesome name="camera" color={color} size={31} />),
         }}
       />
-      <Tab.Screen name="Deck"
-      component={PokedexScreen}
-      options={{
-        tabBarLabel: 'Deck',
-        tabBarIcon: ({color}) => (<Icon name="book" color={color} size={35} />),
-      }}
-        />
+      <Tab.Screen 
+        name="Deck"
+        component={PokedexScreen}
+        options={{
+          tabBarLabel: 'Deck',
+          tabBarIcon: ({color}) => (<FontAwesome name="book" color={color} size={35} />),
+        }}
+      />
   </Tab.Navigator>
   );
 }
@@ -70,10 +71,9 @@ function App() {
     <NavigationContainer>
       <StatusBar hidden />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="CameraScreen" component={CameraStack} />
-      <Stack.Screen name="PreviewScreen" component={PreviewScreen}/>
-    </Stack.Navigator>
-    
+        <Stack.Screen name="CameraScreen" component={CameraStack} />
+        <Stack.Screen name="PreviewScreen" component={PreviewScreen}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

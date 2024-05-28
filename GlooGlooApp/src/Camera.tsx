@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View, PermissionsAndroid, Platform } from 'react-native';
-import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
 import FocusSvg from '../assets/svg/Focus.svg'
 
 
@@ -48,7 +47,6 @@ function CameraScreen({ navigation }) {
     const [photo, setPhoto] = useState<PhotoFile>();
     const [modalVisible, setModalVisible] = useState(false);
     const camera = useRef<Camera>(null)
-    
     const onTakePicturePressed = async () => {
         const photo = await camera.current?.takePhoto({
           enableShutterSound: false,
@@ -61,11 +59,10 @@ function CameraScreen({ navigation }) {
         // Magic AI Work then pokedex
         // setModalVisible(true)
     }
-    
+
     if (!requestPermission()) {
       requestPermission();
     }
-
     if (!device) {
       return <Text> Camera not found.</Text>
     }
