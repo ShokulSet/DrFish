@@ -3,6 +3,7 @@ import { StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FlashMessage from "react-native-flash-message";
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import BootSplash from "react-native-bootsplash";
 import CameraScreen from './src/Camera.tsx'
@@ -74,8 +75,18 @@ function App() {
         <Stack.Screen name="CameraScreen" component={CameraStack} />
         <Stack.Screen name="PreviewScreen" component={PreviewScreen}/>
       </Stack.Navigator>
+      <FlashMessage position="top" textStyle={styles.falshText}/>
     </NavigationContainer>
   );
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+  falshText: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Dangrek-Regular',
+    textAlign: 'center'
+  }
+})

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text } from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import { showMessage, hideMessage } from "react-native-flash-message"
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,6 +12,12 @@ function PreviewScreen({ navigation, route }) {
     const onPressedDownload = async () => {
       await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
       console.log("CameraRoll:Saved");
+      showMessage({
+        message: "Image Saved",
+        type: "info",
+        backgroundColor: '#0F1035',
+        duration: 1000,
+      });
     }
     const onPressedNext = async () => {
       // Implement next button functionality here
