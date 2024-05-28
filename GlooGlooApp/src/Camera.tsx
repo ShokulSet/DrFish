@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View, Modal, PermissionsAndroid, Platform } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View, PermissionsAndroid, Platform } from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import FocusSvg from '../assets/svg/Focus.svg'
+
 
 const requestPermission = async () => {
   try {
@@ -42,7 +43,7 @@ const requestPermission = async () => {
   }
 };
 
-function CameraScreen() {
+function CameraScreen({ navigation }) {
     const device = useCameraDevice('back')
     const [photo, setPhoto] = useState<PhotoFile>();
     const [modalVisible, setModalVisible] = useState(false);
@@ -55,7 +56,8 @@ function CameraScreen() {
           qualityPrioritization: 'quality'
         });
         console.log(photo)
-        
+        navigation.navigate('PreviewScreen', { photo: photo?.path });
+        // CameraRoll.save(file:{photo.})
         // Magic AI Work then pokedex
         // setModalVisible(true)
     }
@@ -93,22 +95,6 @@ function CameraScreen() {
               ]}
           />
         </View>
-
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            console.log("load Closed")
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.centeredView}>
-            <View style={styles.loadView}>
-              <Text>Modal testing</Text>
-            </View>
-          </View>
-        </Modal>
-
       </View>
     )
 }
@@ -140,18 +126,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
-  },
-  loadView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    }
   }
 })
 
