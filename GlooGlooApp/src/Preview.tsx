@@ -8,42 +8,59 @@ import Entypo from 'react-native-vector-icons/Entypo';
 function PreviewScreen({ navigation, route }) {
     const { photo } = route.params;
     const { width } = Dimensions.get('window');
+    const onPressedDownload = async () => {
+      await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
+      console.log("CameraRoll:Saved");
+    }
+    const onPressedNext = async () => {
+      // Implement next button functionality here
+    }
+    const onPressedShare = async () => {
+      // Implement share button functionality here
+    }
 
     return (
-        <ImageBackground source={{ uri: 'file://' + photo }} style={StyleSheet.absoluteFill} resizeMode='cover'>
-            <View style={styles.crossContainer}>
-                <Pressable 
-                style={styles.cross}
-                onPress={() => navigation.goBack()}
-                >
-                    <EvilIcons name='close' color={'white'} size={30}/>
-                </Pressable>
-            </View>
-            <View style={styles.tabBarContainer}>
-                <View style={styles.buttonContainer}>
-                  <AntDesign name='download' color={'white'} size={35} />
-                  <Text style={styles.buttonText}>Download</Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                  <AntDesign name='caretright' color={'white'} size={35} />
-                </View>
-                <View style={styles.buttonContainer}>
-                  <Entypo name='share' color={'white'} size={35} />                  
-                </View>
-            </View>
-        </ImageBackground>
-
-  );
+      <ImageBackground source={{ uri: 'file://' + photo.path }} style={StyleSheet.absoluteFill} resizeMode='cover'>
+        <View style={styles.crossContainer}>
+          <Pressable
+            style={styles.cross}
+            onPress={() => navigation.goBack()}
+          >
+            <EvilIcons name='close' color={'white'} size={30} />
+          </Pressable>
+        </View>
+        <View style={styles.tabBarContainer}>
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={onPressedDownload} style={styles.pressable}>
+              <AntDesign name='download' color={'white'} size={35} />
+              <Text style={styles.buttonText}>Download</Text>
+            </Pressable>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={onPressedNext} style={styles.pressable}>
+              <AntDesign name='caretright' color={'white'} size={35} />
+              <Text style={styles.buttonText}>Next</Text>
+            </Pressable>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={onPressedShare} style={styles.pressable}>
+              <Entypo name='share' color={'white'} size={35} />
+              <Text style={styles.buttonText}>Share</Text>
+            </Pressable>
+          </View>
+        </View>
+      </ImageBackground>
+    );
 };
 
 const styles = StyleSheet.create({
   crossContainer: {
     position: 'absolute',
-    alignSelf: "center", 
+    alignSelf: "center",
     top: 22,
     right: 22,
-    width: 40, 
-    height: 40, 
+    width: 40,
+    height: 40,
     borderRadius: 50,
     backgroundColor: 'rgba(0,0,0, 0.3)',
     justifyContent: 'center',
@@ -69,19 +86,20 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 12
+
   },
-  button: {
-    width: 40, 
-    height: 40, 
-    borderRadius: 50,
+  pressable: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   buttonText: {
     color: 'white',
     fontSize: 20,
     fontFamily: 'Dangrek-Regular',
-    position: 'absolute',
-    top: 30
+    textAlign: 'center'
   }
 });
 

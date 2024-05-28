@@ -54,7 +54,7 @@ function CameraScreen({ navigation }) {
           qualityPrioritization: 'quality'
         });
         console.log(photo)
-        navigation.navigate('PreviewScreen', { photo: photo?.path });
+        navigation.navigate('PreviewScreen', { photo: photo});
         // CameraRoll.save(file:{photo.})
         // Magic AI Work then pokedex
         // setModalVisible(true)
