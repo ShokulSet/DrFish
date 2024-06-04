@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text} from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import { showMessage } from "react-native-flash-message"
@@ -7,9 +7,13 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-function PreviewScreen({ navigation, route }) {
+function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo } = route.params;
     const { width } = Dimensions.get('window');
+    const [isVisible, setIsVisible] = useState(true);
+    const toggleVisibility = () => {
+      setIsVisible(!isVisible);
+    };
     const onPressedDownload = async () => {
       await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
       console.log("CameraRoll:Saved");
@@ -21,6 +25,7 @@ function PreviewScreen({ navigation, route }) {
       });
     };
     const onPressedNext = async () => {
+      toggleVisibility();
       
     };
   
@@ -35,34 +40,38 @@ function PreviewScreen({ navigation, route }) {
 
     return (
       <ImageBackground source={{ uri: 'file://' + photo.path }} style={StyleSheet.absoluteFill} resizeMode='cover'>
-        <View style={styles.crossContainer}>
-          <Pressable
-            style={styles.cross}
-            onPress={() => navigation.goBack()}
-          >
-            <EvilIcons name='close' color={'white'} size={30} />
-          </Pressable>
-        </View>
-        <View style={styles.tabBarContainer}>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={onPressedDownload} style={styles.pressable}>
-              <AntDesign name='download' color={'white'} size={35} />
-              <Text style={styles.buttonText}>Download</Text>
-            </Pressable>
+        {isVisible && (
+          <View style={{ flex: 1}}>
+            <View style={styles.crossContainer}>
+              <Pressable
+                style={styles.cross}
+                onPress={() => navigation.goBack()}
+              >
+                <EvilIcons name='close' color={'white'} size={30} />
+              </Pressable>
+            </View>
+            <View style={styles.tabBarContainer}>
+              <View style={styles.buttonContainer}>
+                <Pressable onPress={onPressedDownload} style={styles.pressable}>
+                  <AntDesign name='download' color={'white'} size={35} />
+                  <Text style={styles.buttonText}>Download</Text>
+                </Pressable>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable onPress={onPressedNext} style={styles.pressable}>
+                  <AntDesign name='caretright' color={'white'} size={35} />
+                  <Text style={styles.buttonText}>Next</Text>
+                </Pressable>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable onPress={onPressedShare} style={styles.pressable}>
+                  <Entypo name='share' color={'white'} size={35} />
+                  <Text style={styles.buttonText}>Share</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={onPressedNext} style={styles.pressable}>
-              <AntDesign name='caretright' color={'white'} size={35} />
-              <Text style={styles.buttonText}>Next</Text>
-            </Pressable>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={onPressedShare} style={styles.pressable}>
-              <Entypo name='share' color={'white'} size={35} />
-              <Text style={styles.buttonText}>Share</Text>
-            </Pressable>
-          </View>
-        </View>
+        )}
       </ImageBackground>
     );
 };
