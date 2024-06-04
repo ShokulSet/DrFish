@@ -3,7 +3,7 @@ import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-n
 import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
 import FocusSvg from '../assets/svg/Focus.svg'
 
-// TODO : REWRITE THE PERMISSION SYSTEM (TRY LIBRARY)
+// TODO : PERM
 const requestPermission = async () => { 
   try {
     const grantedCamera = await PermissionsAndroid.request(
