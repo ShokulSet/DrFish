@@ -9,6 +9,8 @@ import BootSplash from "react-native-bootsplash";
 import CameraScreen from './src/Camera.tsx'
 import PokedexScreen from './src/Pokedex.tsx'
 import PreviewScreen from './src/Preview.tsx'
+import * as tf from '@tensorflow/tfjs';
+import '@tensorflow/tfjs-react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -61,9 +63,11 @@ function App() {
   useEffect(() => {
     const init = async () => {
     // loading process
+    await tf.ready
     };
     init().finally(async () => {
       await BootSplash.hide({ fade: true });
+
       console.log("BootSplash has been hidden successfully");
     });
   }, []);
