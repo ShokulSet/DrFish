@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
 import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
-import FocusSvg from '../assets/svg/Focus.svg'
+// import FocusSvg from '../assets/svg/Focus.svg'
 
 // TODO : PERM
 const requestPermission = async () => { 
@@ -75,7 +75,7 @@ function CameraScreen({navigation}: {navigation: any}) {
           photo={true}
         /> 
         
-        <FocusSvg style={{marginBottom: 200}}/>
+        {/* <FocusSvg style={{marginBottom: 200}}/> */}
 
         {/* Camera button */}
         <View style={styles.buttonBackground}>
