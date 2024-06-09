@@ -6,7 +6,11 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { getPredictions } from './ImageClassification';
+import * as tf from '@tensorflow/tfjs'
+import {bundleResourceIO, decodeJpeg} from '@tensorflow/tfjs-react-native'
+import * as FileSystem from 'expo-file-system';
+const modelJSON = require('../model/class/model.json')
+const modelWeights = require('../model/class/group1-shard1of1.bin')
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo } = route.params;
@@ -15,6 +19,15 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const toggleVisibility = () => {
       setIsVisible(!isVisible);
     };
+    const loadModel = async()=>{
+      //.ts: const loadModel = async ():Promise<void|tf.LayersModel>=>{
+          const model = await tf.loadLayersModel(
+              bundleResourceIO(modelJSON, modelWeights)
+          ).catch((e)=>{
+            console.log("[LOADING ERROR] info:",e)
+          })
+          return model
+      }
     const onPressedDownload = async () => {
       await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
       console.log("CameraRoll:Saved");
@@ -26,10 +39,8 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
       });
     };
     const onPressedNext = async () => {
-      //toggleVisibility();
-      console.log("OnPressedNext")      
-      const pred = await getPredictions(`file://${photo.path}`);
-      console.log(pred);
+      toggleVisibility();
+      
     };
   
     const onPressedShare = async () => {
