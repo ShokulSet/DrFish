@@ -3,8 +3,8 @@ import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-n
 import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
-// TODO : PERM
-const requestPermission = async () => { 
+
+const requestPermission = async () => {
   try {
     const grantedCamera = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -42,7 +42,7 @@ const requestPermission = async () => {
   }
 };
 
-function CameraScreen({navigation}: {navigation: any}) {
+function CameraScreen({ navigation }) {
     const device = useCameraDevice('back')
     const [photo, setPhoto] = useState<PhotoFile>();
     const [modalVisible, setModalVisible] = useState(false);
@@ -55,6 +55,9 @@ function CameraScreen({navigation}: {navigation: any}) {
         });
         console.log(photo)
         navigation.navigate('PreviewScreen', { photo: photo});
+        // CameraRoll.save(file:{photo.})
+        // Magic AI Work then pokedex
+        // setModalVisible(true)
     }
 
     if (!requestPermission()) {

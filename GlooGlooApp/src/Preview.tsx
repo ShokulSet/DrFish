@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text} from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import { showMessage } from "react-native-flash-message"
@@ -12,22 +12,9 @@ import * as FileSystem from 'expo-file-system';
 const modelJSON = require('../model/class/model.json')
 const modelWeights = require('../model/class/group1-shard1of1.bin')
 
-function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
+function PreviewScreen({ navigation, route }) {
     const { photo } = route.params;
     const { width } = Dimensions.get('window');
-    const [isVisible, setIsVisible] = useState(true);
-    const toggleVisibility = () => {
-      setIsVisible(!isVisible);
-    };
-    const loadModel = async()=>{
-      //.ts: const loadModel = async ():Promise<void|tf.LayersModel>=>{
-          const model = await tf.loadLayersModel(
-              bundleResourceIO(modelJSON, modelWeights)
-          ).catch((e)=>{
-            console.log("[LOADING ERROR] info:",e)
-          })
-          return model
-      }
     const onPressedDownload = async () => {
       await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
       console.log("CameraRoll:Saved");
@@ -39,7 +26,6 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
       });
     };
     const onPressedNext = async () => {
-      toggleVisibility();
       
     };
   
@@ -54,38 +40,34 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
 
     return (
       <ImageBackground source={{ uri: 'file://' + photo.path }} style={StyleSheet.absoluteFill} resizeMode='cover'>
-        {isVisible && (
-          <View style={{ flex: 1}}>
-            <View style={styles.crossContainer}>
-              <Pressable
-                style={styles.cross}
-                onPress={() => navigation.goBack()}
-              >
-                <EvilIcons name='close' color={'white'} size={30} />
-              </Pressable>
-            </View>
-            <View style={styles.tabBarContainer}>
-              <View style={styles.buttonContainer}>
-                <Pressable onPress={onPressedDownload} style={styles.pressable}>
-                  <AntDesign name='download' color={'white'} size={35} />
-                  <Text style={styles.buttonText}>Download</Text>
-                </Pressable>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Pressable onPress={onPressedNext} style={styles.pressable}>
-                  <AntDesign name='caretright' color={'white'} size={35} />
-                  <Text style={styles.buttonText}>Next</Text>
-                </Pressable>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Pressable onPress={onPressedShare} style={styles.pressable}>
-                  <Entypo name='share' color={'white'} size={35} />
-                  <Text style={styles.buttonText}>Share</Text>
-                </Pressable>
-              </View>
-            </View>
+        <View style={styles.crossContainer}>
+          <Pressable
+            style={styles.cross}
+            onPress={() => navigation.goBack()}
+          >
+            <EvilIcons name='close' color={'white'} size={30} />
+          </Pressable>
+        </View>
+        <View style={styles.tabBarContainer}>
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={onPressedDownload} style={styles.pressable}>
+              <AntDesign name='download' color={'white'} size={35} />
+              <Text style={styles.buttonText}>Download</Text>
+            </Pressable>
           </View>
-        )}
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={onPressedNext} style={styles.pressable}>
+              <AntDesign name='caretright' color={'white'} size={35} />
+              <Text style={styles.buttonText}>Next</Text>
+            </Pressable>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={onPressedShare} style={styles.pressable}>
+              <Entypo name='share' color={'white'} size={35} />
+              <Text style={styles.buttonText}>Share</Text>
+            </Pressable>
+          </View>
+        </View>
       </ImageBackground>
     );
 };
