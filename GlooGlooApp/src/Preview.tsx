@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text} from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import { showMessage } from "react-native-flash-message"
@@ -6,15 +6,15 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import * as tf from '@tensorflow/tfjs'
-import {bundleResourceIO, decodeJpeg} from '@tensorflow/tfjs-react-native'
-import * as FileSystem from 'expo-file-system';
-const modelJSON = require('../model/class/model.json')
-const modelWeights = require('../model/class/group1-shard1of1.bin')
+import getPredictions from './ImageClassification.tsx';
 
-function PreviewScreen({ navigation, route }) {
+function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo } = route.params;
     const { width } = Dimensions.get('window');
+    const [isVisible, setIsVisible] = useState(true);
+    const toggleVisibility = () => {
+      setIsVisible(!isVisible);
+    };
     const onPressedDownload = async () => {
       await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
       console.log("CameraRoll:Saved");
@@ -26,7 +26,10 @@ function PreviewScreen({ navigation, route }) {
       });
     };
     const onPressedNext = async () => {
-      
+      //toggleVisibility();
+      console.log("OnPressedNext")      
+      const pred = await getPredictions(`file://${photo.path}`);
+      console.log(pred);
     };
   
     const onPressedShare = async () => {
@@ -40,34 +43,38 @@ function PreviewScreen({ navigation, route }) {
 
     return (
       <ImageBackground source={{ uri: 'file://' + photo.path }} style={StyleSheet.absoluteFill} resizeMode='cover'>
-        <View style={styles.crossContainer}>
-          <Pressable
-            style={styles.cross}
-            onPress={() => navigation.goBack()}
-          >
-            <EvilIcons name='close' color={'white'} size={30} />
-          </Pressable>
-        </View>
-        <View style={styles.tabBarContainer}>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={onPressedDownload} style={styles.pressable}>
-              <AntDesign name='download' color={'white'} size={35} />
-              <Text style={styles.buttonText}>Download</Text>
-            </Pressable>
+        {isVisible && (
+          <View style={{ flex: 1}}>
+            <View style={styles.crossContainer}>
+              <Pressable
+                style={styles.cross}
+                onPress={() => navigation.goBack()}
+              >
+                <EvilIcons name='close' color={'white'} size={30} />
+              </Pressable>
+            </View>
+            <View style={styles.tabBarContainer}>
+              <View style={styles.buttonContainer}>
+                <Pressable onPress={onPressedDownload} style={styles.pressable}>
+                  <AntDesign name='download' color={'white'} size={35} />
+                  <Text style={styles.buttonText}>Download</Text>
+                </Pressable>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable onPress={onPressedNext} style={styles.pressable}>
+                  <AntDesign name='caretright' color={'white'} size={35} />
+                  <Text style={styles.buttonText}>Next</Text>
+                </Pressable>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Pressable onPress={onPressedShare} style={styles.pressable}>
+                  <Entypo name='share' color={'white'} size={35} />
+                  <Text style={styles.buttonText}>Share</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={onPressedNext} style={styles.pressable}>
-              <AntDesign name='caretright' color={'white'} size={35} />
-              <Text style={styles.buttonText}>Next</Text>
-            </Pressable>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={onPressedShare} style={styles.pressable}>
-              <Entypo name='share' color={'white'} size={35} />
-              <Text style={styles.buttonText}>Share</Text>
-            </Pressable>
-          </View>
-        </View>
+        )}
       </ImageBackground>
     );
 };
