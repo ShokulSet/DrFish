@@ -30,7 +30,19 @@ const requestPermission = async () => {
         buttonPositive: 'OK',
       }
     )
-    if (grantedCamera === PermissionsAndroid.RESULTS.GRANTED && grantedWrite === PermissionsAndroid.RESULTS.GRANTED) {
+    const grantedRead = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+      {
+        title: 'Read Permission',
+        message:
+          'App needs access to read file ' +
+          'so you can save picture.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      }
+    )
+    if ((grantedCamera === PermissionsAndroid.RESULTS.GRANTED && grantedWrite === PermissionsAndroid.RESULTS.GRANTED) && grantedRead === PermissionsAndroid.RESULTS.GRANTED){
       console.log('Permission Granted');
       return true;
     } else {

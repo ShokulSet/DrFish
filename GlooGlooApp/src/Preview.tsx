@@ -28,8 +28,8 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const onPressedNext = async () => {
       toggleVisibility();
       console.log("OnPressedNext")      
-      // const pred = await getPredictions(`file://${photo.path}`);
-      // console.log(pred);
+      const pred = await getPredictions(`file://${photo.path}`);
+      console.log(pred);
     };
   
     const onPressedShare = async () => {
