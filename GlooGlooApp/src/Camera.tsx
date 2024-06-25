@@ -1,61 +1,11 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
 import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
-
-const requestPermission = async () => {
-  try {
-    const grantedCamera = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.CAMERA,
-      {
-        title: 'Camera Permission',
-        message:
-          'App needs access to your camera ' +
-          'so you can take pictures.',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      },
-    );
-    const grantedWrite = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-      {
-        title: 'Write Permission',
-        message:
-          'App needs access to write file ' +
-          'so you can save picture.',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      }
-    )
-    const grantedRead = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-      {
-        title: 'Read Permission',
-        message:
-          'App needs access to read file ' +
-          'so you can save picture.',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      }
-    )
-    if ((grantedCamera === PermissionsAndroid.RESULTS.GRANTED && grantedWrite === PermissionsAndroid.RESULTS.GRANTED) && grantedRead === PermissionsAndroid.RESULTS.GRANTED){
-      console.log('Permission Granted');
-      return true;
-    } else {
-      console.log('Permission Denied');
-      return false;
-    }
-  } catch (err) {
-    console.warn(err);
-  }
-};
-
 function CameraScreen({ navigation }) {
     const device = useCameraDevice('back')
+    const { hasPermission, requestPermission } = useCameraPermission()
     const [photo, setPhoto] = useState<PhotoFile>();
     const [modalVisible, setModalVisible] = useState(false);
     const camera = useRef<Camera>(null)
@@ -67,32 +17,29 @@ function CameraScreen({ navigation }) {
         });
         console.log(photo)
         navigation.navigate('PreviewScreen', { photo: photo});
-        // CameraRoll.save(file:{photo.})
-        // Magic AI Work then pokedex
-        // setModalVisible(true)
     }
-
-    if (!requestPermission()) {
-      requestPermission();
-    }
-    if (!device) {
-      return <Text> Camera not found.</Text>
-    }
+    useEffect(() => {
+      requestPermission()
+    }, [requestPermission])
 
     return (
-      // Display camera view
       <View style={styles.centeredView}>
-        <Camera
-          ref={camera}
-          style={StyleSheet.absoluteFill}
-          device={device}
-          isActive={true}
-          photo={true}
-        /> 
-        
-       <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/>
+        {hasPermission && device != null ? (
+          <Camera
+            device={device}
+            style={StyleSheet.absoluteFill}
+            isActive={true}
+            // frameProcessor={frameProcessor}
+            pixelFormat="yuv"
+            photo={true}
+          />
+        ) : (
+          <Text>No Camera available.</Text>
+        )}
+          
+        <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/>
 
-        {/* Camera button */}
+
         <View style={styles.buttonBackground}>
           <Pressable
               onPress={onTakePicturePressed}
@@ -107,9 +54,7 @@ function CameraScreen({ navigation }) {
       </View>
     )
 }
-
 export default CameraScreen;
-
 const styles = StyleSheet.create({
   buttonContainer : {
     position: 'absolute',
