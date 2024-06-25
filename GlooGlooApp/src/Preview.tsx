@@ -6,7 +6,7 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import getPredictions from './TFLite';
+
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo } = route.params;
@@ -27,9 +27,9 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     };
     const onPressedNext = async () => {
       toggleVisibility();
-      console.log("OnPressedNext")      
-      const pred = await getPredictions(`file://${photo.path}`);
-      console.log(pred);
+      // console.log("OnPressedNext")      
+      // const pred = await getPredictions(`file://${photo.path}`);
+      // console.log(pred);
     };
   
     const onPressedShare = async () => {
