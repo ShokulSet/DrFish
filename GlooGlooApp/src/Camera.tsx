@@ -1,5 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
-import { useCameraDevice, Camera, useCameraPermission, PhotoFile } from 'react-native-vision-camera';
+import {
+    Camera,
+    useCameraDevice,
+    useCameraPermission,
+    useFrameProcessor,
+    PhotoFile,
+} from 'react-native-vision-camera';
 import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -16,11 +22,17 @@ function CameraScreen({ navigation }) {
           qualityPrioritization: 'quality'
         });
         console.log(photo)
-        navigation.navigate('PreviewScreen', { photo: photo});
+        navigation.navigate('PreviewScreen', { photo: photo, sharedFrame: sharedValue});
     }
     useEffect(() => {
       requestPermission()
     }, [requestPermission])
+    
+    const sharedFrame = useSharedValue([])
+    const frameProcessor = useFrameProcessor((frame) => {
+        'worklet'
+        sharedFrame = frame
+    }, [sharedFrame])
 
     return (
       <View style={styles.centeredView}>
@@ -29,7 +41,7 @@ function CameraScreen({ navigation }) {
             device={device}
             style={StyleSheet.absoluteFill}
             isActive={true}
-            // frameProcessor={frameProcessor}
+            frameProcessor={frameProcessor}
             pixelFormat="yuv"
             photo={true}
           />

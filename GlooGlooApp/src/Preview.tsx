@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { View, ImageBackground, StyleSheet, Pressable, Dimensions, Text} from 'react-native';
+import {
+    View,
+    ImageBackground,
+    StyleSheet,
+    Pressable,
+    Dimensions,
+    Text
+} from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import { showMessage } from "react-native-flash-message"
 import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-
+import getClassify from './Classification.tsx'
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
-    const { photo } = route.params;
-    const { width } = Dimensions.get('window');
+    const { photo, sharedFrame } = route.params;
     const [isVisible, setIsVisible] = useState(true);
     const toggleVisibility = () => {
       setIsVisible(!isVisible);
@@ -27,9 +33,8 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     };
     const onPressedNext = async () => {
       toggleVisibility();
-      // console.log("OnPressedNext")      
-      // const pred = await getPredictions(`file://${photo.path}`);
-      // console.log(pred);
+      const label = await imageClassify(sharedFrame);
+      console.log(label);
     };
   
     const onPressedShare = async () => {
