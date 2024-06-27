@@ -5,7 +5,7 @@ import {
 } from 'react-native-fast-tflite'
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 
-function tensorToString(tensor: tensor): string {
+function tensorToString(tensor: Tensor): string {
     return '\n - ${tensor.dataType} ${tensor.name}[${tensor.shape}]'
 }
 function modelToString(model: TensorflowModel): string {
@@ -17,9 +17,9 @@ function modelToString(model: TensorflowModel): string {
 }
 
 const getClassify = async ( sharedFrame )=>{
-    consolge.log('getClassify')
+    console.log('getClassify')
     const model = useTensorflowModel(require('../assets/model/model.tflite'))
-    console.log(`Model loaded! Shape:\n${modelToString(actualModel)}]`)
+    console.log(`Model loaded! Shape:\n${modelToString(model)}]`)
     const resized = useResizePlugin(sharedFrame, {
         scale: {
             width: 244,

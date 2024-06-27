@@ -6,14 +6,31 @@ import {
     useFrameProcessor,
     PhotoFile,
 } from 'react-native-vision-camera';
-import { Pressable, StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
+import {
+  Tensor,
+  TensorflowModel,
+  useTensorflowModel,
+} from 'react-native-fast-tflite'
+import { useResizePlugin } from 'vision-camera-resize-plugin'
+import { useSharedValue } from 'react-native-worklets-core';
+import { Pressable, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
-function CameraScreen({ navigation }) {
+function tensorToString(tensor: Tensor): string {
+  return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
+}
+function modelToString(model: TensorflowModel): string {
+  return (
+    `TFLite Model (${model.delegate}):\n` +
+    `- Inputs: ${model.inputs.map(tensorToString).join('')}\n` +
+    `- Outputs: ${model.outputs.map(tensorToString).join('')}`
+  )
+}
+
+function CameraScreen({ navigation }: any) {
     const device = useCameraDevice('back')
     const { hasPermission, requestPermission } = useCameraPermission()
     const [photo, setPhoto] = useState<PhotoFile>();
-    const [modalVisible, setModalVisible] = useState(false);
     const camera = useRef<Camera>(null)
     const onTakePicturePressed = async () => {
         const photo = await camera.current?.takePhoto({
@@ -21,18 +38,56 @@ function CameraScreen({ navigation }) {
           enablePrecapture: true,
           qualityPrioritization: 'quality'
         });
-        console.log(photo)
-        navigation.navigate('PreviewScreen', { photo: photo, sharedFrame: sharedValue});
+        console.log(`Photo: ${photo}`)
+        console.log(`Prediction: ${pred}`)
+        navigation.navigate('PreviewScreen', { photo: photo});
     }
+
+    const model = useTensorflowModel(require('../assets/model/model.tflite'))
+    const actualModel = model.state === 'loaded' ? model.model : undefined
+
+    useEffect(() => {
+      if (actualModel == null) return
+      console.log(`Model loaded! Shape:\n${modelToString(actualModel)}]`)
+    }, [actualModel])
+
+    const { resize } = useResizePlugin()
+    let pred = useSharedValue(0)
+    const frameProcessor = useFrameProcessor(
+      (frame) => {
+        'worklet'
+        if (actualModel == null) {
+          // model is still loading...
+          return
+        }
+  
+        // console.log(`Running inference on ${frame}`)
+        const resized = resize(frame, {
+          scale: {
+            width: 224,
+            height: 224,
+          },
+          pixelFormat: 'rgb',
+          dataType: 'float32',
+        })
+        const result = actualModel.runSync([resized])
+        const logit = result[0]
+        let maxIndex = 0
+        for (let i = 0; i < logit.length; i++) {
+          if (logit[i] > logit[maxIndex]) {
+            maxIndex = i
+          }
+        }
+        pred.value = maxIndex
+      },
+      [actualModel, pred]
+    )
+  
     useEffect(() => {
       requestPermission()
     }, [requestPermission])
-    
-    const sharedFrame = useSharedValue([])
-    const frameProcessor = useFrameProcessor((frame) => {
-        'worklet'
-        sharedFrame = frame
-    }, [sharedFrame])
+
+    console.log(`Model: ${model.state} (${model.model != null})`)
 
     return (
       <View style={styles.centeredView}>
@@ -49,6 +104,14 @@ function CameraScreen({ navigation }) {
           <Text>No Camera available.</Text>
         )}
           
+          {model.state === 'loading' && (
+            <ActivityIndicator size="small" color="white" />
+          )}
+
+          {model.state === 'error' && (
+            <Text>Failed to load model! {model.error.message}</Text>
+          )}
+
         <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/>
 
 
