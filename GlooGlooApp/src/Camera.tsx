@@ -40,7 +40,7 @@ function CameraScreen({ navigation }: any) {
         });
         console.log(`Photo: ${photo}`)
         console.log(`Prediction: ${pred}`)
-        navigation.navigate('PreviewScreen', { photo: photo});
+        navigation.navigate('PreviewScreen', { photo: photo, pred: pred });
     }
 
     const model = useTensorflowModel(require('../assets/model/model.tflite'))
@@ -93,6 +93,7 @@ function CameraScreen({ navigation }: any) {
       <View style={styles.centeredView}>
         {hasPermission && device != null ? (
           <Camera
+            ref={camera}
             device={device}
             style={StyleSheet.absoluteFill}
             isActive={true}
@@ -112,7 +113,7 @@ function CameraScreen({ navigation }: any) {
             <Text>Failed to load model! {model.error.message}</Text>
           )}
 
-        <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/>
+        {/* <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/> */}
 
 
         <View style={styles.buttonBackground}>

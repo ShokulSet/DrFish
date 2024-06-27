@@ -32,7 +32,7 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     };
     const onPressedNext = async () => {
       //toggleVisibility();
-      console.log(pred);
+      console.log(pred.value);
     };
   
     const onPressedShare = async () => {
