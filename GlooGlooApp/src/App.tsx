@@ -9,6 +9,8 @@ import BootSplash from "react-native-bootsplash";
 import CameraScreen from './Camera.tsx'
 import PokedexScreen from './Pokedex.tsx'
 import PreviewScreen from './Preview.tsx'
+import LiveScreen from './Live.tsx'
+import InfoScreen from './Info.tsx'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,8 +36,8 @@ function CameraStack() {
             opacity: 0.9,
             position: 'absolute',
             borderTopWidth: 0,
-        },
-      })}
+          },
+        })}
       >
       <Tab.Screen
         name="Camera" 
@@ -43,6 +45,14 @@ function CameraStack() {
         options={{
           tabBarLabel: 'Camera',
           tabBarIcon: ({color}) => (<FontAwesome name="camera" color={color} size={31} />),
+        }}
+      />
+      <Tab.Screen
+        name="Live" 
+        component={LiveScreen}
+        options={{
+          tabBarLabel: 'Live',
+          tabBarIcon: ({color}) => (<FontAwesome name="street-view" color={color} size={35} />),
         }}
       />
       <Tab.Screen 
@@ -75,6 +85,7 @@ function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="CameraScreen" component={CameraStack} />
         <Stack.Screen name="PreviewScreen" component={PreviewScreen}/>
+        <Stack.Screen name="InfoScreen" component={InfoScreen}/>
       </Stack.Navigator>
       <FlashMessage position="top" textStyle={styles.falshText}/>
     </NavigationContainer>

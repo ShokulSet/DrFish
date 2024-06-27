@@ -4,7 +4,6 @@ import {
     ImageBackground,
     StyleSheet,
     Pressable,
-    Dimensions,
     Text
 } from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
@@ -13,10 +12,10 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import getClassify from './Classification.tsx'
+//import getClassify from './Classification.tsx'
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
-    const { photo, sharedFrame } = route.params;
+    const { photo, pred } = route.params;
     const [isVisible, setIsVisible] = useState(true);
     const toggleVisibility = () => {
       setIsVisible(!isVisible);
@@ -32,9 +31,8 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
       });
     };
     const onPressedNext = async () => {
-      toggleVisibility();
-      const label = await imageClassify(sharedFrame);
-      console.log(label);
+      //toggleVisibility();
+      console.log(pred.value);
     };
   
     const onPressedShare = async () => {
