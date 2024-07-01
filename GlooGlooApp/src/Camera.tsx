@@ -13,7 +13,7 @@ import {
 } from 'react-native-fast-tflite'
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
-import { Pressable, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
 function tensorToString(tensor: Tensor): string {
@@ -31,6 +31,8 @@ function CameraScreen({ navigation }: any) {
     const device = useCameraDevice('back')
     const { hasPermission, requestPermission } = useCameraPermission()
     const [photo, setPhoto] = useState<PhotoFile>();
+    const [isLive, setIsLive] = useState(false);
+    const toggleSwitch = () => setIsLive(previousState => !previousState);
     const camera = useRef<Camera>(null)
     const onTakePicturePressed = async () => {
         const photo = await camera.current?.takePhoto({
@@ -115,7 +117,19 @@ function CameraScreen({ navigation }: any) {
 
         {/* <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/> */}
 
-
+         <View style={styles.switchContainer}>
+            <Switch
+                trackColor={{false: '#767577', true: '#81b0ff'}}
+                thumbColor={isLive ? '#f5dd4b' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isLive}
+            />
+        </View>
+        
+        { isLive ? (
+        //live classify
+        ) : (
         <View style={styles.buttonBackground}>
           <Pressable
               onPress={onTakePicturePressed}
@@ -127,6 +141,7 @@ function CameraScreen({ navigation }: any) {
               ]}
           />
         </View>
+        );
       </View>
     )
 }
@@ -151,7 +166,13 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     backgroundColor: '#FFFFFF'
   },
-  centeredView: {
+  switchContainer : {
+    position: 'absolute',
+    alignSelf: "center", 
+    flex: 1,
+    opacity: 1,
+  },
+ centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

@@ -9,7 +9,6 @@ import BootSplash from "react-native-bootsplash";
 import CameraScreen from './Camera.tsx'
 import PokedexScreen from './Pokedex.tsx'
 import PreviewScreen from './Preview.tsx'
-import LiveScreen from './Live.tsx'
 import InfoScreen from './Info.tsx'
 
 const Tab = createBottomTabNavigator();
@@ -47,15 +46,7 @@ function CameraStack() {
           tabBarIcon: ({color}) => (<FontAwesome name="camera" color={color} size={31} />),
         }}
       />
-      <Tab.Screen
-        name="Live" 
-        component={LiveScreen}
-        options={{
-          tabBarLabel: 'Live',
-          tabBarIcon: ({color}) => (<FontAwesome name="street-view" color={color} size={35} />),
-        }}
-      />
-      <Tab.Screen 
+     <Tab.Screen 
         name="Deck"
         component={PokedexScreen}
         options={{
