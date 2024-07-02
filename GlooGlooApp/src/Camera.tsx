@@ -82,11 +82,12 @@ function CameraScreen({ navigation }: any) {
             }
           }
           pred.value = maxIndex
+          console.log(`Prediction: ${maxIndex}`)
         })
       },
       [pred]
     )
-
+    
     useEffect(() => {
       const intervalId = setInterval(() => {
         setValue(prevValue => prevValue + 1); // Update value every second
@@ -108,11 +109,12 @@ function CameraScreen({ navigation }: any) {
           <Camera
             ref={camera}
             device={device}
-            style={StyleSheet.absoluteFill}
+            style={styles.cameraContainer}
             isActive={true}
             frameProcessor={frameProcessor}
             pixelFormat="yuv"
             photo={true}
+            enableZoomGesture={true}
           />
         ) : (
           <Text>No Camera available.</Text>
@@ -164,6 +166,14 @@ function CameraScreen({ navigation }: any) {
 
 export default CameraScreen;
 const styles = StyleSheet.create({
+  cameraContainer: {
+    position: 'absolute', 
+    left: 0, 
+    right: 0, 
+    top: -25, 
+    bottom: 0,
+    objectFit: 'cover',
+  },
   buttonContainer : {
     position: 'absolute',
     alignSelf: "center", 
