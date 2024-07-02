@@ -1,27 +1,20 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const TodoItem = ({item, onToggle, onDelete}) => {
+const FishItem = ({item}: {item: any}) => {
 
   return (
     <View style={styles.itemContainer}>
-     <Text>{item.title}</Text>
-     
-     <Button title="Toggle" onPress={() => onToggle(item.id)}/>
-
-     <Button title="Delete" onPress={() => onDelete(item.id)}/>
+     <Text>{item.id}</Text>
      
     </View>
   );
-
 };
 
 const styles = StyleSheet.create({
-
   itemContainer: {
     backgroundColor: "#fff", 
     padding: 20,
   },
-
 });
 
-export default TodoItem;
+export default FishItem;

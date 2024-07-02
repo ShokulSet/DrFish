@@ -1,20 +1,18 @@
 import { FlatList } from "react-native"; 
-
 import FishItem from "./FishItem";
+import SQLite from "react-native-sqlite-storage";
 
-const FishList = ({todos, onToggle, onDelete}) => {
+const FishList = ({db}: {db: any}) => {
 
-  const renderItem = ({item}) => (
-    <TodoItem 
+  const renderItem = ({item}: {item: any}) => (
+    <FishItem 
       item={item}
-      onToggle={onToggle}
-      onDelete={onDelete} 
     />
   );
    
   return (
     <FlatList
-      data={todos}
+      data={db}
       renderItem={renderItem}
       keyExtractor={item => item.id}
     />
@@ -22,4 +20,4 @@ const FishList = ({todos, onToggle, onDelete}) => {
   
 }
 
-export default TodoList;
+export default FishList;
