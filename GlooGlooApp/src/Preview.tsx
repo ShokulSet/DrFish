@@ -11,6 +11,7 @@ import { showMessage } from "react-native-flash-message"
 import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo, pred } = route.params;
