@@ -15,6 +15,7 @@ import {
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
+import React = require('react');
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -46,7 +47,7 @@ function CameraScreen({ navigation }: any) {
         navigation.navigate('PreviewScreen', { photo: photo, pred: pred.value });
     }
 
-    const model = useTensorflowModel(require('../assets/model/model.tflite'))
+    const model = useTensorflowModel(require('../../assets/model/model.tflite'))
     const actualModel = model.state === 'loaded' ? model.model : undefined
 
     useEffect(() => {
@@ -101,7 +102,7 @@ function CameraScreen({ navigation }: any) {
       requestPermission()
     }, [requestPermission])
 
-    console.log(`Model: ${model.state} (${model.model != null})`)
+    // console.log(`Model: ${model.state} (${model.model != null})`)
 
     return (
       <View style={styles.centeredView}>

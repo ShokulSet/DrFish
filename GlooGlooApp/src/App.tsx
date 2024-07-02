@@ -6,10 +6,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FlashMessage from "react-native-flash-message";
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import BootSplash from "react-native-bootsplash";
-import CameraScreen from './Camera.tsx'
-import PokedexScreen from './Pokedex.tsx'
-import PreviewScreen from './Preview.tsx'
-import InfoScreen from './Info.tsx'
+import CameraScreen from './components/Camera'
+import PokedexScreen from './components/Pokedex'
+import PreviewScreen from './components/Preview'
+import InfoScreen from './components/Info'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
