@@ -10,12 +10,16 @@ export const getDBconnection = async () => {
   
 export const getFishes = async (db: SQLiteDatabase) => {
   const selectQuery = `SELECT * FROM ${tableName}`;
-
   return db.executeSql(selectQuery).then(([results]) => {
     return results.rows;
   }).catch((error) => {
     console.error(error);
   });
+};
+
+export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
+  const selectQuery = `SELECT "Common Name" FROM ${tableName} WHERE id = ${id}`
+  return db.executeSql(selectQuery)
 };
 
 export const updateFishes = (db: SQLiteDatabase, id: number, found: string) => {
