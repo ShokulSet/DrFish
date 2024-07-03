@@ -15,9 +15,8 @@ import {
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
-import React = require('react');
 
-import { getDBconnection, getFishes } from '../services/DBManager';
+import { getDBconnection, getFishLabel } from '../services/DBManager';
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -66,6 +65,7 @@ function CameraScreen({ navigation }: any) {
           // model is still loading...
           return
         }
+        
         runAtTargetFps(1, () => {
           'worklet'
           const resized = resize(frame, {
@@ -85,17 +85,27 @@ function CameraScreen({ navigation }: any) {
             }
           }
           pred.value = maxIndex
-          console.log(`Prediction: ${maxIndex}`)
+          // console.log(`Prediction: ${maxIndex}`)
         })
       },
       [pred]
     )
     
+    const [label, setLabel] = useState('')
     useEffect(() => {
       const intervalId = setInterval(() => {
-        setValue(prevValue => prevValue + 1); // Update value every second
-      }, 500);
-  
+        getDBconnection().then((db) => {
+          getFishLabel(db, pred.value).then(([results]) => {
+            //console.log(results.rows.item(0)["Common name"])
+            setLabel(results.rows.item(0)["Common name"])
+            })
+            .catch((error) => 
+            console.error(error)
+          )
+        }).catch((error) =>
+          console.error(error)
+      )
+      }, 2500);
       // Cleanup function to clear the interval when the component unmounts
       return () => clearInterval(intervalId);
     }, []);
@@ -147,7 +157,7 @@ function CameraScreen({ navigation }: any) {
         { isLive ? (
           <View style={styles.liveContainer}>
             <Text style={{color: 'white', fontFamily:'Dangrek-Regular', fontSize: 30}}>
-            {pred.value}
+            {label}
             </Text>
           </View>
         ) : (
