@@ -25,7 +25,15 @@ export const getFishes = async (db: SQLiteDatabase) => {
   }).catch((error) => {
     console.error(error);
   });
+};
 
+export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
+    const selectQuery = `SELECT Common Name FROM ${tableName} WHERE id = ${id}`
+    return db.executeSql(selectQuery).then(([results]) => {
+        console.log(results.rows.item(0));
+    }).catch((error) =>
+        console.error(error);
+    });
 };
 
 export const updateFishes = (id: number, Found: boolean) => {
