@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const FishItem = ({item}: {item: any}) => {
+const FishItem = (fishes, i) => {
 
   return (
     <View style={styles.itemContainer}>
-     <Text>{item.id}</Text>
+     <Text>{fishes.items(i)['Common name']}</Text>
      
     </View>
   );
