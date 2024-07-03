@@ -32,20 +32,15 @@ export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
   return db.executeSql(selectQuery)
 };
 
-export const updateFishes = (id: number, Found: boolean) => {
+export const isFound = async (db: SQLiteDatabase, id: number) => {
+  const selectQuery = `SELECT Found FROM ${tableName} WHERE id = ${id}`
+  return db.executeSql(selectQuery)
+}
+
+export const updateFishes = (db: SQLiteDatabase,  id: number, Found: boolean) => {
   const updateQuery =
-  `UPDATE todos
-  Found = ?  
-  where id = ?`;
-  const params = [Found, id];
-  return new Promise((resolve, reject) => {
-    db.transaction(tx => {
-      tx.executeSql(
-        updateQuery, 
-        params,
-        (tx, results) => resolve(results),
-        (_, error) => reject(error)
-      );
-    });
-  });
+  `UPDATE ${tableName}
+  Found = ${Found}  
+  where id = ${id}`;
+  return db.executeSql(updateQuery);
 };

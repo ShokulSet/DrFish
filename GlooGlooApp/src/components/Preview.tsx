@@ -12,9 +12,10 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
+import InfoScreen from './Info';
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
-    const { photo, pred } = route.params;
+    const { photo, label, id } = route.params;
     const [isVisible, setIsVisible] = useState(true);
     const toggleVisibility = () => {
       setIsVisible(!isVisible);
@@ -31,7 +32,8 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     };
     const onPressedNext = async () => {
       //toggleVisibility();
-      console.log(pred.value);
+      console.log(label);
+      navigation.navigate('InfoScreen', { label: label, id: id});
     };
   
     const onPressedShare = async () => {
