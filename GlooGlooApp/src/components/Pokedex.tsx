@@ -1,31 +1,38 @@
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 
 import { getDBconnection, getFishes } from '../services/DBManager';
 import React from 'react';
-import { ResultSetRowList } from 'react-native-sqlite-storage';
 
 function PokedexScreen() {
 
   const [fishes, setFishes] = useState<any>([]);
+  const [images , setImages] = useState<any>({});
+
   useEffect(() => {
     getDBconnection().then((db) => {
-      getFishes(db).then((fishes: any) => {
-        // loop through fishes and create new array
+      
+      getFishes(db).then(([results]) => {
         let fishArray = [];
-        for (let i = 0; i < fishes.length; i++) {
-          fishArray.push(fishes.item(i));
-        }        
-        
+        for (let i = 0; i < results.rows.length; i++) {
+          fishArray.push(results.rows.item(i));
+        }
         setFishes(fishArray);
 
-      }
-      ).catch((error) => 
+      })
+      .catch((error) => 
         console.error(error)
-      )
-    }).catch((error) =>
-      console.error(error)
+    )
+    
+  }).catch((error) =>
+    console.error(error)
   )
+  // for (let i = 0; i < fishes.length; i++) {
+  //   const path_name = `../../assets/fish_img/${i}.jpg`;
+  //   const image = require(path_name);
+  //   setImages({...images, [fishes[i].id]: image});
+  // }
+  console.log(images);
 
   }, []);
 
@@ -34,7 +41,15 @@ function PokedexScreen() {
       <SafeAreaView style={styles.container}>
       <FlatList
         data={fishes}
-        renderItem={({ item }) => <Item commonName={item["Common name"]} />}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <Item commonName={item["Common name"]} id={item["id"]} />
+              {/* <Image source={require(`../../assets/fish_img/${item["id"]}.jpg`)} /> */}
+            </View>
+          );
+          
+        }}
         keyExtractor={item => item['id']}
       />
     </SafeAreaView>
@@ -42,11 +57,19 @@ function PokedexScreen() {
   );
 }
 
-const Item = (item: any) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{item.commonName}</Text>
-  </View>
-);
+const Item = (item: any) => {
+  // const path_name = `../../assets/fish_img/${item.id}.jpg`;
+  // const image = require(path_name);
+  return (
+    <View style={styles.item}>
+      {/* <Image source={image} /> */}
+      <Text style={styles.title}>{item.commonName}</Text>
+      <Text style={styles.title}>{item.id}</Text>
+    </View>
+
+  )
+};
+
 
 const styles = StyleSheet.create({
   container: {
@@ -54,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#0F1035',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -62,6 +85,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontFamily: 'Dangrek-Regular',
+    color: 'white',
   },
 });
 
