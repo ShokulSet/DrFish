@@ -2,7 +2,7 @@ import { openDatabase, enablePromise, SQLiteDatabase } from "react-native-sqlite
 enablePromise(true);
 
 const dbname = 'fish.sqlite';
-const tableName = 'db';
+const tableName = 'fish';
 
 export const getDBconnection = async () => {
   return openDatabase({ name: dbname , location: 'default', createFromLocation: 1 });
@@ -19,11 +19,11 @@ export const getFish = async (db: SQLiteDatabase, id: number) => {
 };
 
 export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
-  const selectQuery = `SELECT "Common Name" FROM ${tableName} WHERE id = ${id}`
+  const selectQuery = `SELECT "CommonName" FROM ${tableName} WHERE id = ${id}`
   return db.executeSql(selectQuery)
 };
 
-export const updateFishes = (db: SQLiteDatabase, id: number, found: string) => {
+export const updateFishes = (db: SQLiteDatabase, id: number, found: number) => {
   const updateQuery =
   `UPDATE ${tableName}
   SET Found = "${found}"  

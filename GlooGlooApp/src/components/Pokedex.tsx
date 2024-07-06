@@ -47,7 +47,7 @@ function PokedexScreen() {
             return (
               <View>
                 <Item
-                  commonName={item["Common name"]}
+                  commonName={item["CommonName"]}
                   id={item["id"]} 
                 />
               </View>

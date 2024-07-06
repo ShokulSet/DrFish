@@ -15,7 +15,7 @@ import {
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
-
+import { getDBconnection, getFishLabel } from '../services/DBManager';
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -89,6 +89,7 @@ function CameraScreen({ navigation }: any) {
       },
       [pred]
     )
+    
 
     
     const [label, setLabel] = useState('')
@@ -97,7 +98,7 @@ function CameraScreen({ navigation }: any) {
         getDBconnection().then((db) => {
           getFishLabel(db, pred.value).then(([results]) => {
             //console.log(results.rows.item(0)["Common name"])
-            setLabel(results.rows.item(0)["Common name"])
+            setLabel(results.rows.item(0)["CommonName"])
             })
             .catch((error) => 
             console.error(error)

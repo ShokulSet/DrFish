@@ -59,10 +59,7 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
         {isVisible && (
           <View style={{ flex: 1}}>
             <View style={styles.crossContainer}>
-              <Pressable
-                style={styles.cross}
-                onPress={() => navigation.goBack()}
-              >
+              <Pressable style={styles.cross} onPress={() => navigation.goBack()}>
                 <EvilIcons name='close' color={'white'} size={30} />
               </Pressable>
             </View>
