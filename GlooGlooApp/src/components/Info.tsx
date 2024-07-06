@@ -10,10 +10,10 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 function InfoScreen({navigation, route}: {navigation: any, route: any}) {
+    const { label, id } = route.params;
     return (
         <View style={styles.crossContainer}>
             <Pressable
-            style={styles.cross}
             onPress={() => navigation.goBack()}
             >
             <AntDesign name='leftcircleo' color={'white'} size={30} />
@@ -35,9 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0, 0.3)',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  cross: {
-    alignSelf: "center",
-    bottom: 3
   },
 });
