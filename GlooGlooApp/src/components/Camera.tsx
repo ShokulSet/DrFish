@@ -44,7 +44,8 @@ function CameraScreen({ navigation }: any) {
           qualityPrioritization: 'quality'
         });
         console.log(photo);
-        navigation.navigate('PreviewScreen', { photo: photo, label: label, pred: pred.value});
+        console.log(label, pred.value)
+        navigation.navigate('PreviewScreen', { photo: photo, label: label, id: pred.value});
     }
 
     const model = useTensorflowModel(require('../../assets/model/model.tflite'))
@@ -89,6 +90,7 @@ function CameraScreen({ navigation }: any) {
       },
       [pred]
     )
+
     
     const [label, setLabel] = useState('')
     useEffect(() => {
@@ -104,7 +106,7 @@ function CameraScreen({ navigation }: any) {
         }).catch((error) =>
           console.error(error)
       )
-      }, 2500);
+      }, 1000);
       // Cleanup function to clear the interval when the component unmounts
       return () => clearInterval(intervalId);
     }, []);
