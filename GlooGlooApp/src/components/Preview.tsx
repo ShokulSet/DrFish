@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     ImageBackground,
@@ -31,10 +31,19 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
       });
     };
     const onPressedNext = async () => {
-      //toggleVisibility();
-      console.log(label);
       navigation.navigate('InfoScreen', { label: label, id: id});
+      // getDBconnection().then((db) => {
+      //   getFish(db, id).then(([results]) => {
+      //     console.log(results.rows.item(0));
+      //   })
+      //   .catch((error) => 
+      //     console.error(error)
+      //   )
+      // }).catch((error) =>
+      //   console.error(error)
+      // )
     };
+
   
     const onPressedShare = async () => {
       try{
