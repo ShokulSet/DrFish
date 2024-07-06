@@ -2,15 +2,14 @@ import { FlatList, Image, ImageBackground, SafeAreaView, StatusBar, StyleSheet, 
 import { useEffect, useState } from 'react';
 
 import { getDBconnection, getFishes } from '../services/DBManager';
-import React from 'react';
 
 import fish_images from '../../assets/fish_image';
 import LinearGradient from 'react-native-linear-gradient';
+import SearchBar from './SearchBar';
 
 function PokedexScreen() {
-
   const [fishes, setFishes] = useState<any>([]);
-  const [images , setImages] = useState<any>({});
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     getDBconnection().then((db) => {
@@ -40,22 +39,24 @@ function PokedexScreen() {
       colors={['#DCE9F2', '#94C5E8', '#0C7FD1', '#013154']}
     >
       <SafeAreaView style={styles.container}>
-      <FlatList
-        data={fishes}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <Item
-                commonName={item["Common name"]}
-                id={item["id"]} 
-              />
-            </View>
-          );
-          
-        }}
-        keyExtractor={item => item['id']}
-      />
-    </SafeAreaView>
+        <SearchBar search={search} setSearch={setSearch} />
+        
+        <FlatList
+          data={fishes}
+          renderItem={({ item }) => {
+            return (
+              <View>
+                <Item
+                  commonName={item["Common name"]}
+                  id={item["id"]} 
+                />
+              </View>
+            );
+            
+          }}
+          keyExtractor={item => item['id']}
+        />
+      </SafeAreaView>
 
     </LinearGradient>
   );
@@ -86,7 +87,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
-    borderRadius: 5
+    borderRadius: 5,
+
   },
   
   item: {
