@@ -10,18 +10,8 @@ export const getDBconnection = async () => {
   
 export const getFishes = async (db: SQLiteDatabase) => {
   const selectQuery = `SELECT * FROM ${tableName}`;
-  // see all tables
-  // const selectQuery = `SELECT name FROM sqlite_master WHERE type='table'`;
   return db.executeSql(selectQuery).then(([results]) => {
-    console.log(results.rows.item(0));
-    // const count = results.rows.length;
-    // const fishes = [];
-    // for (let i = 0; i < count; i++) {
-    //   const row = results.rows.item(i);
-    //   const { id, name, Found } = row;
-    //   fishes.push({ id, name, Found });
-    // }
-    // return fishes;
+    return results.rows;
   }).catch((error) => {
     console.error(error);
   });
@@ -32,15 +22,15 @@ export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
   return db.executeSql(selectQuery)
 };
 
-export const isFound = async (db: SQLiteDatabase, id: number) => {
-  const selectQuery = `SELECT Found FROM ${tableName} WHERE id = ${id}`
-  return db.executeSql(selectQuery)
-}
-
-export const updateFishes = (db: SQLiteDatabase,  id: number, Found: boolean) => {
+export const updateFishes = (db: SQLiteDatabase, id: number, found: string) => {
   const updateQuery =
   `UPDATE ${tableName}
-  Found = ${Found}  
-  where id = ${id}`;
-  return db.executeSql(updateQuery);
+  Found = ?  
+  where id = ?`;
+  const params = [found, id];
+  return db.executeSql(updateQuery, params).then((results) => {
+    return results;
+  }).catch((error) => {
+    console.error(error);
+  });
 };
