@@ -10,11 +10,8 @@ export const getDBconnection = async () => {
   
 export const getFishes = async (db: SQLiteDatabase) => {
   const selectQuery = `SELECT * FROM ${tableName}`;
-  return db.executeSql(selectQuery).then(([results]) => {
-    return results.rows;
-  }).catch((error) => {
-    console.error(error);
-  });
+  return db.executeSql(selectQuery)
+
 };
 
 export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
@@ -28,9 +25,5 @@ export const updateFishes = (db: SQLiteDatabase, id: number, found: string) => {
   Found = ?  
   where id = ?`;
   const params = [found, id];
-  return db.executeSql(updateQuery, params).then((results) => {
-    return results;
-  }).catch((error) => {
-    console.error(error);
-  });
+  return db.executeSql(updateQuery, params);
 };
