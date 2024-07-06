@@ -43,9 +43,8 @@ function CameraScreen({ navigation }: any) {
           enablePrecapture: true,
           qualityPrioritization: 'quality'
         });
-        console.log(`Photo: ${photo}`)
-        console.log(`Prediction: ${pred}`)
-        navigation.navigate('PreviewScreen', { photo: photo, pred: pred.value });
+        console.log(photo);
+        navigation.navigate('PreviewScreen', { photo: photo, label: label, pred: pred.value});
     }
 
     const model = useTensorflowModel(require('../../assets/model/model.tflite'))
