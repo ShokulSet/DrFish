@@ -23,6 +23,12 @@ export const getFishLabel = async (db: SQLiteDatabase, id: number) => {
   return db.executeSql(selectQuery)
 };
 
+export const searchFishes = async (db: SQLiteDatabase, search: string) => {
+  const selectQuery = `SELECT * FROM ${tableName} WHERE CommonName LIKE "%${search}%" OR ScientificName LIKE "%${search}%"`;
+  return db.executeSql(selectQuery)
+
+}
+
 export const updateFishes = (db: SQLiteDatabase, id: number, found: number) => {
   const updateQuery =
   `UPDATE ${tableName}

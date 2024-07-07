@@ -18,6 +18,7 @@ function CameraStack() {
   return (
     <Tab.Navigator 
         screenOptions={({ route }) => ({
+          tabBarHideOnKeyboard: true,
           headerShown: false,
           tabBarActiveTintColor: '#FFFFFF',
           tabBarInactiveTintColor: '#545370',
@@ -36,6 +37,7 @@ function CameraStack() {
             position: 'absolute',
             borderTopWidth: 0,
           },
+          
         })}
       >
       <Tab.Screen

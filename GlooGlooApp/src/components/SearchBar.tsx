@@ -14,7 +14,7 @@ function SearchBar({search, setSearch}: {search: string, setSearch: (search: str
                     style={styles.searchBar}
                 />
             </View>
-      </View>
+        </View>
     );
 }
 
