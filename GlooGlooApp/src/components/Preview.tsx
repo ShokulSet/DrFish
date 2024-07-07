@@ -12,7 +12,6 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import InfoScreen from './Info';
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo, label, id } = route.params;
@@ -22,7 +21,6 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     };
     const onPressedDownload = async () => {
       await CameraRoll.save(`file://${photo.path}`, { type: 'photo' });
-      console.log("CameraRoll:Saved");
       showMessage({
         message: "Image Saved",
         type: "info",
@@ -32,25 +30,14 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     };
     const onPressedNext = async () => {
       navigation.navigate('InfoScreen', { label: label, id: id});
-      // getDBconnection().then((db) => {
-      //   getFish(db, id).then(([results]) => {
-      //     console.log(results.rows.item(0));
-      //   })
-      //   .catch((error) => 
-      //     console.error(error)
-      //   )
-      // }).catch((error) =>
-      //   console.error(error)
-      // )
     };
 
   
     const onPressedShare = async () => {
       try{
-        console.log("Image Sharing")
         await Share.open({url: `file://${photo.path}`});
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     };
 

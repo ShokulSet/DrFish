@@ -1,24 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
     Pressable,
-    Text
+    Text,
+    Image,
+    SafeAreaView
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { getDBconnection, getFish, updateFishes } from '../services/DBManager';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
-
-const getData = async (id: number) => {
-  const db = await getDBconnection();
-  const [results] = await getFish(db, id);
-  return results.rows.item(0);
-}
+import { getDBconnection, getFish, updateFishDB } from '../services/DBManager';
+import LinearGradient from 'react-native-linear-gradient';
+import fish_imgages from '../../assets/fish_image';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const updateFish = (id: number) => {
   getDBconnection().then((db) => {
-    updateFishes(db, id, 1).then(([results]) => {
-    console.log(`Updated Fish ${id}`)
+    updateFishDB(db, id, 1).then(([results]) => {
     })
     .catch((error) => 
       console.error(error)
@@ -26,87 +23,177 @@ const updateFish = (id: number) => {
   }).catch((error) =>
     console.error(error)
   )
-  // getDBconnection().then((db) => {
-  //   getFish(db, id).then(([results]) => {
-  //   console.log(results.rows.item(0));
-  //   })
-  //   .catch((error) => 
-  //     console.error(error)
-  //   )
-  // }).catch((error) =>
-  //   console.error(error)
-  // )
+
 }
 
 function InfoScreen({navigation, route}: {navigation: any, route: any}) {
-  const { label, id } = route.params;
-  const [isFound, setIsFound] = useState(false);
-  getData(id).then((data) => {
-    if (data.found == 1) {
-      setIsFound(true);
-    }
+  const { id } = route.params;
+  const [lang, setLang] = useState<'en' | 'th'>('en');
+  const [name, setName] = useState('');
+  const [scientificName, setScientificName] = useState('');
+  const [infoEN, setInfoEN] = useState('');
+  const [infoTH, setInfoTH] = useState('');
 
-    const Info = data.Info
-    
-  });
-  const [isEng, setIsEng] = useState(true);
-  const changeLanguage = () => {
-    setIsEng(!isEng);
-  }
+  useEffect(() => {
+    getDBconnection().then((db) => {
+      getFish(db, id).then(([results]) => {
+        setName(results.rows.item(0).CommonName);
+        setScientificName(results.rows.item(0).ScientificName.replace(/_/g, ' '));
+        setInfoEN(results.rows.item(0).Info);
+        setInfoTH(results.rows.item(0).InfoTH);
+      })
+      .catch((error) => 
+        console.error(error)
+      )
+    }).catch((error) =>
+      console.error(error)
+    )
+  }, [id]);
+
   updateFish(id);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.crossContainer}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <AntDesign name='leftcircleo' color={'white'} size={30} />
-        </Pressable>
-      </View>
-      {isEng ? (
-        <View>
-          <Text>English Now</Text>
-          <Pressable onPress={changeLanguage}>
-            <Text>Thai</Text>
-          </Pressable>
-          {isFound ? (
-            <Text>{label} is found</Text>
-          ) : (
-            <Text>{label} is not found</Text>
-          )}
-        </View>
-      ) : (
-        // The corrected part: Wrap the conditional rendering in a single parent <View>
-        <View>
-          <Text>Thai Now</Text>
-          <Pressable onPress={changeLanguage}>
-            <Text>English</Text>
-          </Pressable>
-          {isFound ? (
-            <Text>{label} is found</Text>
-          ) : (
-            <Text>{label} is not found</Text>
-          )}
-        </View>
-      )}
-    </View>
+    <LinearGradient
+      style={styles.container}
+      colors={['#DCE9F2', '#94C5E8', '#0C7FD1', '#013154']}
+    >
+      <SafeAreaView>
+        <ScrollView>
+          <View
+            style={styles.topContainer}
+          >
+            <View
+              style={styles.arrowContainer}
+            >
+              <Pressable
+                onPress={() => navigation.goBack()}
+                style={styles.arrow}
+              >
+                <AntDesign name='left' color={'white'} size={25} />
+              </Pressable>
+
+            </View>
+
+            <Text
+              style={styles.title}
+            >
+              Deck
+            </Text>
+
+            <View
+              style={styles.arrowContainer}
+            >
+              <Pressable
+                onPress={() => {
+                  setLang(lang === 'en' ? 'th' : 'en');
+                }}
+              >
+                <Text
+                  style={{
+                    fontFamily: 'Dangrek-Regular',
+                    fontSize: 14,
+                    color: 'white',
+                    textAlign: 'center',
+                  }}
+                >
+                  {lang === 'en' ? 'Eng' : 'ไทย'}
+                </Text>
+              </Pressable>
+
+
+            </View>
+          </View>
+
+          <View
+            style={{
+              alignSelf: 'center',
+            }}
+          >
+            <Image
+              source={fish_imgages[id]}
+              style={{
+                borderRadius: 15,
+                alignContent: 'center',
+              }}
+            />
+          </View>
+
+          <Text
+            style={styles.title}
+          >
+            {name}
+          </Text>
+
+          <Text
+            style={styles.sciName}
+          >
+            ({scientificName})
+          </Text>
+
+          <Text
+            style={styles.description}
+          >
+            {lang === 'en' ? infoEN : infoTH}
+          </Text>
+
+        </ScrollView>
+
+      </SafeAreaView>
+
+    </LinearGradient>
   );
 }
-export default InfoScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    flexDirection: 'column',
+    padding: 20,
   },
-  crossContainer: {
-    position: 'absolute',
-    alignSelf: "center",
-    top: 22,
-    left: 22,
+  title: {
+    fontFamily: 'Dangrek-Regular',
+    fontSize: 30,
+    color: 'black',
+    textAlign: 'center',
+  },
+  description: {
+    fontFamily: 'Dangrek-Regular',
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+    
+  },
+  sciName: {
+    fontFamily: 'Dangrek-Regular',
+    fontSize: 20,
+    color: 'orange',
+    textAlign: 'center',
+  },
+  topContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 20,
+    paddingBottom: 25,
+    paddingHorizontal: 10,
+  },
+  arrowContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 20,
     width: 40,
     height: 40,
-    borderRadius: 50,
-    backgroundColor: 'rgba(0,0,0, 0.3)',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+
   },
+  arrow: {
+    flex: 1,
+    alignSelf: 'center',
+    justifyContent: 'center',
+  }
 });
+
+export default InfoScreen;

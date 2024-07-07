@@ -42,8 +42,6 @@ function CameraScreen({ navigation }: any) {
           enablePrecapture: true,
           qualityPrioritization: 'quality'
         });
-        console.log(photo);
-        console.log(label, pred.value)
         navigation.navigate('PreviewScreen', { photo: photo, label: label, id: pred.value});
     }
 

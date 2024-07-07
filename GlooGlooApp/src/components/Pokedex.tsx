@@ -1,61 +1,57 @@
-import { FlatList, Image, ImageBackground, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, ImageBackground, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import { getDBconnection, getFishes, searchFishes } from '../services/DBManager';
+import { getDBconnection, getFishes, searchFishes, updateFishDB } from '../services/DBManager';
 
 import fish_images from '../../assets/fish_image';
 import LinearGradient from 'react-native-linear-gradient';
 import SearchBar from './SearchBar';
 import CheckBox from './CheckBox';
 
-function PokedexScreen() {
+function PokedexScreen({ navigation }: any) {
   const [fishes, setFishes] = useState<any>([]);
   const [search, setSearch] = useState('');
   const [found, setFound] = useState(false);
 
   useEffect(() => {
-    if (search !== '') {
-      getDBconnection().then((db) => {
-        searchFishes(db, search).then(([results]) => {
-          let fishArray = [];
-          for (let i = 0; i < results.rows.length; i++) {
-            fishArray.push(results.rows.item(i));
-          }
-          setFishes(fishArray);
-        })
-        .catch((error) => 
-          console.error(error)
-        )
-      }).catch((error) =>
+    getDBconnection().then((db) => {
+      if (search === '') {
+      searchFishes(db, search).then(([results]) => {
+        let fishArray = [];
+        for (let i = 0; i < results.rows.length; i++) {
+          fishArray.push(results.rows.item(i));
+        }
+        if (found) {
+          fishArray = fishArray.filter((fish: any) => fish["found"] === '1');
+        }
+        setFishes(fishArray);
+      })
+      .catch((error) => 
         console.error(error)
       )
     } else {
-      getDBconnection().then((db) => {
-        
-        getFishes(db).then(([results]) => {
-          let fishArray = [];
-          for (let i = 0; i < results.rows.length; i++) {
-            fishArray.push(results.rows.item(i));
-          }
-          if (found) {
-            fishArray = fishArray.filter((fish: any) => fish["Found"] === 1);
-          }
-          
-          setFishes(fishArray);
-  
-        })
-        .catch((error) => 
-          console.error(error)
+      getFishes(db).then(([results]) => {
+        let fishArray = [];
+        for (let i = 0; i < results.rows.length; i++) {
+          fishArray.push(results.rows.item(i));
+        }
+        if (found) {
+          fishArray = fishArray.filter((fish: any) => fish["found"] === '1');
+        }
+        setFishes(fishArray);
+      })
+      .catch((error) => 
+        console.error(error)
       )
-      
+    }
     }).catch((error) =>
       console.error(error)
     )
-    
-    }
 
-  }, [search, found]);
+
+
+  }, [search, found, fishes]);
 
   return (
     <LinearGradient
@@ -67,7 +63,7 @@ function PokedexScreen() {
           style={styles.topContainer}
         >
           <SearchBar search={search} setSearch={setSearch} />
-          <CheckBox check={found} setCheck={setFound} whenCheck='Found' whenNotCheck='notFound' />
+          <CheckBox check={found} setCheck={setFound} whenCheck='Found' whenNotCheck='not Found' />
         </View>
         
         <FlatList
@@ -76,6 +72,7 @@ function PokedexScreen() {
             return (
               <View>
                 <Item
+                  navigate={navigation.navigate}
                   commonName={item["CommonName"]}
                   id={item["id"]}
                   found={item["found"]} 
@@ -92,24 +89,35 @@ function PokedexScreen() {
   );
 }
 
+function geToInfoScreen(navigate: any, id: number) {
+  navigate('InfoScreen', {id: id});
+}
+
 const Item = (item: any) => {
   return (
-    <ImageBackground
-      style={(item.found === 1) ? styles.item : [styles.item, {opacity: 0.5, backgroundColor: 'black'}] }
-      source={fish_images[item["id"]]}
+    <Pressable
+      onPress={(item.found === '1') ? () => {geToInfoScreen(item.navigate, item.id)} : () => {}}
+      // onPress={(item.found === '1') ? () => {} : () => {getDBconnection().then((db) => {updateFishDB(db, item.id, 1)})}}
     >
+      <ImageBackground
+        style={(item.found === '1') ? styles.item : [styles.item, {opacity: 0.5, backgroundColor: 'black'}] }
+        source={fish_images[item["id"]]}
+      >
 
-      <View style={styles.bottom}>
-        <Text style={styles.title}>{item.commonName}</Text>
-      <Entypo
-        name='lock'
-        size={100}
-        color='white'
-        style={styles.lockIcon}
-      />
-      </View>
+        <View style={styles.bottom}>
+          <Text style={styles.title}>{item.commonName}</Text>
+          {(item.found === '0') ? 
+            <Entypo
+              name='lock'
+              size={100}
+              color='white'
+              style={styles.lockIcon}
+            />: <></>
+          }
+        </View>
 
-    </ImageBackground>
+      </ImageBackground>
+    </Pressable>
 
   )
 };
@@ -119,12 +127,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+    paddingBottom: 100,
   },
   topContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
-    paddingBottom: 20,
+    paddingBottom: 25,
 
     },
   linearGradient: {

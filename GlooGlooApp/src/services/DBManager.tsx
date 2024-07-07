@@ -29,7 +29,7 @@ export const searchFishes = async (db: SQLiteDatabase, search: string) => {
 
 }
 
-export const updateFishes = (db: SQLiteDatabase, id: number, found: number) => {
+export const updateFishDB = (db: SQLiteDatabase, id: number, found: number) => {
   const updateQuery =
   `UPDATE ${tableName}
   SET Found = "${found}"  

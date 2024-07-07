@@ -49,7 +49,16 @@ function CameraStack() {
         }}
       />
      <Tab.Screen 
-        name="Deck"
+        name="Deck"  // getDBconnection().then((db) => {
+          //   getFish(db, id).then(([results]) => {
+          //   console.log(results.rows.item(0));
+          //   })
+          //   .catch((error) => 
+          //     console.error(error)
+          //   )
+          // }).catch((error) =>
+          //   console.error(error)
+          // )
         component={PokedexScreen}
         options={{
           tabBarLabel: 'Deck',

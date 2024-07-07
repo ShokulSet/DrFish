@@ -9,8 +9,8 @@ function CheckBox({check, setCheck, whenCheck, whenNotCheck}:
         style={styles.container}
     >
         <Pressable
-        onPress={() => setCheck(!check)}
-        style={[styles.checkBox, {backgroundColor: check ? 'gray' : 'white'}]}
+            onPress={() => setCheck(!check)}
+            style={[styles.checkBox, {backgroundColor: check ? 'gray' : 'white'}]}
         >
             <Text
                 style={styles.text}
