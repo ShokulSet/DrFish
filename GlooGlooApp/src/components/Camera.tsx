@@ -57,16 +57,17 @@ function CameraScreen({ navigation }: any) {
 
     const { resize } = useResizePlugin()
     let pred = useSharedValue(0)
+    let isloading = useSharedValue(false)
     const frameProcessor = useFrameProcessor(
       (frame) => {
         'worklet'
-        if (actualModel == null) {
-          // model is still loading...
-          return
+        if (!actualModel) {
+            console.error('Model is not loaded yet');
+            return;
         }
-        
         runAtTargetFps(1, () => {
           'worklet'
+          isloading.value = true
           const resized = resize(frame, {
             scale: {
               width: 224,
@@ -87,10 +88,8 @@ function CameraScreen({ navigation }: any) {
           // console.log(`Prediction: ${maxIndex}`)
         })
       },
-      [pred]
+      [pred, isloading, actualModel]
     )
-    
-
     
     const [label, setLabel] = useState('')
     useEffect(() => {
@@ -156,11 +155,20 @@ function CameraScreen({ navigation }: any) {
         </View>
         
         { isLive ? (
-          <View style={styles.liveContainer}>
-            <Text style={{color: 'white', fontFamily:'Dangrek-Regular', fontSize: 30}}>
-            {label}
-            </Text>
-          </View>
+          // check if loaded
+          isloading.value ? (
+            <View style={styles.liveContainer}>
+              <Text style={{color: 'white', fontFamily:'Dangrek-Regular', fontSize: 30}}>
+              {label}
+              </Text>
+            </View>
+          ) : (
+            <View style={styles.liveContainer}>
+              <Text style={{color: 'white', fontFamily:'Dangrek-Regular', fontSize: 30}}>
+              Loading...
+              </Text>
+            </View>
+          )
         ) : (
           <View style={styles.buttonBackground}>
             <Pressable
@@ -234,4 +242,3 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 })
-
