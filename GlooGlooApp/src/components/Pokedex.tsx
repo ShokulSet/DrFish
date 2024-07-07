@@ -17,7 +17,7 @@ function PokedexScreen({ navigation }: any) {
   useEffect(() => {
     getDBconnection().then((db) => {
       if (search === '') {
-      searchFishes(db, search).then(([results]) => {
+      getFishes(db).then(([results]) => {
         let fishArray = [];
         for (let i = 0; i < results.rows.length; i++) {
           fishArray.push(results.rows.item(i));
@@ -31,11 +31,12 @@ function PokedexScreen({ navigation }: any) {
         console.error(error)
       )
     } else {
-      getFishes(db).then(([results]) => {
+      searchFishes(db, search).then(([results]) => {
         let fishArray = [];
         for (let i = 0; i < results.rows.length; i++) {
           fishArray.push(results.rows.item(i));
         }
+
         if (found) {
           fishArray = fishArray.filter((fish: any) => fish["found"] === '1');
         }
@@ -51,7 +52,7 @@ function PokedexScreen({ navigation }: any) {
 
 
 
-  }, [search, found, fishes]);
+  }, [search, found]);
 
   return (
     <LinearGradient
