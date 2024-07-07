@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Tts from 'react-native-tts';
 import {
     View,
     StyleSheet,
@@ -90,7 +91,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
               >
                 <Text
                   style={{
-                    fontFamily: 'Dangrek-Regular',
+                    fontFamily: 'Dangrek-Regular', 
                     fontSize: 14,
                     color: 'white',
                     textAlign: 'center',
@@ -130,12 +131,18 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
             ({scientificName})
           </Text>
 
-          <Text
-            style={styles.description}
-          >
-            {lang === 'en' ? infoEN : infoTH}
-          </Text>
-
+          {lang === 'en' ? 
+            <Text
+              style={styles.descriptionEN}
+            >
+              {infoEN}
+            </Text> : 
+            <Text
+              style={styles.descriptionTH}
+            >
+              {infoTH}
+            </Text>
+          }
         </ScrollView>
 
       </SafeAreaView>
@@ -158,16 +165,21 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
   },
-  description: {
+  descriptionEN: {
     fontFamily: 'Dangrek-Regular',
     fontSize: 20,
     color: 'black',
     textAlign: 'center',
-    
+  },
+  descriptionTH: {
+    fontFamily: 'Sarabun-Bold',
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
   },
   sciName: {
     fontFamily: 'Dangrek-Regular',
-    fontSize: 20,
+    fontSize: 18.5,
     color: 'orange',
     textAlign: 'center',
   },
