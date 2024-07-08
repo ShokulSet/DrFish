@@ -12,6 +12,7 @@ import {
   TensorflowModel,
   useTensorflowModel,
 } from 'react-native-fast-tflite'
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
@@ -34,7 +35,6 @@ function CameraScreen({ navigation }: any) {
     const [photo, setPhoto] = useState<PhotoFile>();
     const [isLive, setIsLive] = useState(false);
     const [value, setValue] = useState(0)
-    const toggleSwitch = () => setIsLive(previousState => !previousState);
     const camera = useRef<Camera>(null)
     const onTakePicturePressed = async () => {
         const photo = await camera.current?.takePhoto({
@@ -141,16 +141,6 @@ function CameraScreen({ navigation }: any) {
 
         {/* <Feather name='maximize' color={'white'} size={180} style={{bottom: 80}}/> */}
 
-         <View style={styles.switchContainer}>
-            <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={isLive ? '#f5dd4b' : '#f4f3f4'}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isLive}
-                style={styles.switch}
-            />
-        </View>
         
         { isLive ? (
           // check if loaded
@@ -180,12 +170,43 @@ function CameraScreen({ navigation }: any) {
             />
           </View>
         )}
+
+
+        <View
+          style={styles.changeModeContainer}
+        >
+          <Pressable
+            onPress={() => {setIsLive(!isLive)}}
+            style={({pressed}) => [
+              {
+                width: 60,
+                height: 60,
+                borderRadius: 50,
+              },
+              
+            ]}
+          >
+
+            { isLive ? 
+              <AntDesign name="camerao" size={30} style={styles.centered} />            
+            :
+              <AntDesign name="videocamera" size={30} style={styles.centered} />
+            }
+          </Pressable>
+        </View>
       </View>
     )
 }
 
 export default CameraScreen;
 const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
   cameraContainer: {
     position: 'absolute', 
     left: 0, 
@@ -212,6 +233,18 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     opacity: 0.7,
     backgroundColor: '#FFFFFF'
+  },
+  changeModeContainer : {
+    position: 'absolute',
+    alignSelf: "center",
+    top: 25,
+    right: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   switchContainer : {
     position: 'absolute',

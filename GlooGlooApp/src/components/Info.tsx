@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Tts from 'react-native-tts';
 import {
     View,
     StyleSheet,
@@ -143,15 +142,34 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
               {infoTH}
             </Text>
           }
+
+
         </ScrollView>
 
       </SafeAreaView>
+      <View
+        style={styles.speakContainer}
+      >
+        <AntDesign name='sound' color={'black'} size={30} />
+      </View>
 
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
+  speakContainer: {
+    position: 'absolute',
+    alignSelf: "center",
+    bottom: 30,
+    right: 30,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -168,14 +186,20 @@ const styles = StyleSheet.create({
   descriptionEN: {
     fontFamily: 'Dangrek-Regular',
     fontSize: 20,
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 15,
+    paddingBottom: 75,
   },
   descriptionTH: {
     fontFamily: 'Sarabun-Bold',
     fontSize: 20,
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 15,
+    paddingBottom: 75,
   },
   sciName: {
     fontFamily: 'Dangrek-Regular',
