@@ -550,9 +550,6 @@ const fish_images: {[key: number]: ImageSourcePropType} = {
     546: require('./fish_img/546.jpg'),
     547: require('./fish_img/547.jpg'),
     548: require('./fish_img/548.jpg'),
-    
-
-
 
 }
 
