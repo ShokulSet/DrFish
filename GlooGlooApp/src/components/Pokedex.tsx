@@ -25,6 +25,15 @@ function PokedexScreen({ navigation }: any) {
         if (found) {
           fishArray = fishArray.filter((fish: any) => fish["found"] === '1');
         }
+        fishArray.sort((a: any, b: any) => {
+          if (a["found"] === '1' && b["found"] === '0') {
+            return -1;
+          } else if (a["found"] === '0' && b["found"] === '1') {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         setFishes(fishArray);
       })
       .catch((error) => 
@@ -49,8 +58,6 @@ function PokedexScreen({ navigation }: any) {
     }).catch((error) =>
       console.error(error)
     )
-
-
 
   }, [search, found]);
 
