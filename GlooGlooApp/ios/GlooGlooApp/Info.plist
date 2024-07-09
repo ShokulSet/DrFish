@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -50,6 +50,28 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Dangrek-Regular.ttf</string>
+		<string>Mitr-Bold.ttf</string>
+		<string>Mitr-ExtraLight.ttf</string>
+		<string>Mitr-Light.ttf</string>
+		<string>Mitr-Medium.ttf</string>
+		<string>Mitr-Regular.ttf</string>
+		<string>Mitr-SemiBold.ttf</string>
+		<string>Sarabun-Bold.ttf</string>
+		<string>Sarabun-BoldItalic.ttf</string>
+		<string>Sarabun-ExtraBold.ttf</string>
+		<string>Sarabun-ExtraBoldItalic.ttf</string>
+		<string>Sarabun-ExtraLight.ttf</string>
+		<string>Sarabun-ExtraLightItalic.ttf</string>
+		<string>Sarabun-Italic.ttf</string>
+		<string>Sarabun-Light.ttf</string>
+		<string>Sarabun-LightItalic.ttf</string>
+		<string>Sarabun-Medium.ttf</string>
+		<string>Sarabun-MediumItalic.ttf</string>
+		<string>Sarabun-Regular.ttf</string>
+		<string>Sarabun-SemiBold.ttf</string>
+		<string>Sarabun-SemiBoldItalic.ttf</string>
+		<string>Sarabun-Thin.ttf</string>
+		<string>Sarabun-ThinItalic.ttf</string>
 	</array>
 </dict>
 </plist>

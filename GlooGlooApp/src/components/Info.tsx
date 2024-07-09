@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import {
-    View,
-    StyleSheet,
-    Pressable,
-    Text,
-    Image,
-    SafeAreaView
+  View,
+  StyleSheet,
+  Pressable,
+  Text,
+  Image,
+  SafeAreaView,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -88,7 +88,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
             <Text
               style={lang === 'en' ? styles.titleInfoEN : styles.titleInfoTH}
             >
-            {lang === 'en' ? 'DECK' : 'สารานุกรม'}  
+              {lang === 'en' ? 'DECK' : 'สารานุกรม'}  
             </Text>
 
             <View
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   },
   speakContainer: {
     position: 'absolute',
-    alignSelf: "center",
+    alignSelf: 'center',
     bottom: 40,
     right: 30,
     width: 60,
@@ -208,8 +208,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   titleInfoTH: {
-    fontFamily: 'Sarabun-ExtraBold',
-    fontWeight: 'bold',
+    fontFamily: 'Mitr-Bold',
     fontSize: 32,
     color: 'black',
     textAlign: 'center',
@@ -226,8 +225,8 @@ const styles = StyleSheet.create({
     width: 350,
   },
   descriptionTH: {
-    fontFamily: 'Sarabun-Bold',
-    fontWeight: 'bold',
+    fontFamily: 'Mitr-Medium',
+    // fontWeight: 'bold',
     fontSize: 20,
     color: '#D9ECF7',
     textAlign: 'left',
