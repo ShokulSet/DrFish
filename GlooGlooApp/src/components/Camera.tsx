@@ -13,6 +13,7 @@ import {
   useTensorflowModel,
 } from 'react-native-fast-tflite'
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
@@ -179,18 +180,19 @@ function CameraScreen({ navigation }: any) {
             onPress={() => {setIsLive(!isLive)}}
             style={({pressed}) => [
               {
-                width: 60,
-                height: 60,
+                width: 55,
+                height: 55,
                 borderRadius: 50,
+                backgroundColor: pressed ? 'rgb(210, 230, 255)' : '#F0EFEF'
               },
               
             ]}
           >
 
             { isLive ? 
-              <AntDesign name="camerao" size={30} style={styles.centered} />            
+              <FontAwesome5 name="camera" size={30} style={styles.centered} />            
             :
-              <AntDesign name="videocamera" size={30} style={styles.centered} />
+              <FontAwesome5 name="video" size={30} style={styles.centered} />
             }
           </Pressable>
         </View>
@@ -206,6 +208,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     textAlignVertical: 'center',
+    color: '#2E3069',
   },
   cameraContainer: {
     position: 'absolute', 
@@ -237,22 +240,16 @@ const styles = StyleSheet.create({
   changeModeContainer : {
     position: 'absolute',
     alignSelf: "center",
-    top: 25,
-    right: 20,
+    bottom: 135,
+    right: 30,
     width: 60,
     height: 60,
     borderRadius: 50,
-    backgroundColor: 'white',
+    backgroundColor: '#F0EFEF',
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  switchContainer : {
-    position: 'absolute',
-    top: 50,
-    right: 20,
-  },
-  switch : {
-    transform: [{ scaleX: 2 }, { scaleY: 2 }, { rotate: '90deg' }],
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: 'rgba(255,255,255,0.3)'
   },
  centeredView: {
     flex: 1,
@@ -263,7 +260,7 @@ const styles = StyleSheet.create({
   liveContainer: {
     position: 'absolute',
     alignSelf: "center",
-    bottom: 130,
+    top: 10,
     width: "auto",
     paddingHorizontal: 20,
     height: 60,
