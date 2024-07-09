@@ -13,6 +13,8 @@ import { getDBconnection, getFish, updateFishDB } from '../services/DBManager';
 import LinearGradient from 'react-native-linear-gradient';
 import fish_imgages from '../../assets/fish_image';
 import { ScrollView } from 'react-native-gesture-handler';
+import SVGTH from '../../assets/svg/th.svg';
+import SVGEN from '../../assets/svg/en.svg';
 
 const updateFish = (id: number) => {
   getDBconnection().then((db) => {
@@ -89,16 +91,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
                   setLang(lang === 'en' ? 'th' : 'en');
                 }}
               >
-                <Text
-                  style={{
-                    fontFamily: 'Dangrek-Regular', 
-                    fontSize: 14,
-                    color: 'white',
-                    textAlign: 'center',
-                  }}
-                >
-                  {lang === 'en' ? 'Eng' : 'ไทย'}
-                </Text>
+                {lang === 'en' ? <SVGEN /> : <SVGTH />}
               </Pressable>
 
 
