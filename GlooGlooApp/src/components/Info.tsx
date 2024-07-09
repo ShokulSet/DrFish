@@ -8,10 +8,12 @@ import {
     SafeAreaView
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { getDBconnection, getFish, updateFishDB } from '../services/DBManager';
 import LinearGradient from 'react-native-linear-gradient';
 import fish_imgages from '../../assets/fish_image';
 import { ScrollView } from 'react-native-gesture-handler';
+import Tts from 'react-native-tts';
 import SVGTH from '../../assets/svg/th.svg';
 import SVGEN from '../../assets/svg/en.svg';
 
@@ -27,6 +29,13 @@ const updateFish = (id: number) => {
   )
 
 }
+
+const readDescription = (isEn: boolean,description: string) => {
+  Tts.setDefaultLanguage(isEn ? 'en-EN' : 'th-TH');
+  Tts.setDefaultRate(0.5);
+  Tts.speak(description);
+}
+
 
 function InfoScreen({navigation, route}: {navigation: any, route: any}) {
   const { id } = route.params;
@@ -77,13 +86,13 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
             </View>
 
             <Text
-              style={styles.title}
+              style={lang === 'en' ? styles.titleInfoEN : styles.titleInfoTH}
             >
-              Deck
+            {lang === 'en' ? 'DECK' : 'สารานุกรม'}  
             </Text>
 
             <View
-              style={styles.arrowContainer}
+              style={styles.langContainer}
             >
               <Pressable
                 onPress={() => {
@@ -92,8 +101,6 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
               >
                 {lang === 'en' ? <SVGEN /> : <SVGTH />}
               </Pressable>
-
-
             </View>
           </View>
 
@@ -107,12 +114,13 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
               style={{
                 borderRadius: 15,
                 alignContent: 'center',
+                width: 330,
               }}
             />
           </View>
 
           <Text
-            style={styles.title}
+            style={styles.comName}
           >
             {name}
           </Text>
@@ -141,27 +149,50 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
 
       </SafeAreaView>
       <View
-        style={styles.speakContainer}
-      >
-        <AntDesign name='sound' color={'black'} size={30} />
-      </View>
+          style={styles.speakContainer}
+        >
+          <Pressable
+            onPress={() => {readDescription(lang === 'en', lang === 'en' ? infoEN : infoTH)}}
+            style={({pressed}) => [
+              {
+                width: 55,
+                height: 55,
+                borderRadius: 50,
+                backgroundColor: pressed ? 'rgb(210, 230, 255)' : '#F0EFEF'
+              },
+              
+            ]}
+          >
+            <Entypo name="sound" size={35} style={styles.centered} />
+          </Pressable>
+        </View>
 
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    color: '#2E3069',
+  },
   speakContainer: {
     position: 'absolute',
     alignSelf: "center",
-    bottom: 30,
+    bottom: 40,
     right: 30,
     width: 60,
     height: 60,
     borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: '#F0EFEF',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: 'rgba(255,255,255,0.3)'
   },
   container: {
     flex: 1,
@@ -170,34 +201,56 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
   },
-  title: {
+  titleInfoEN: {
     fontFamily: 'Dangrek-Regular',
-    fontSize: 30,
+    fontSize: 36,
+    color: 'black',
+    textAlign: 'center',
+  },
+  titleInfoTH: {
+    fontFamily: 'Sarabun-ExtraBold',
+    fontWeight: 'bold',
+    fontSize: 32,
     color: 'black',
     textAlign: 'center',
   },
   descriptionEN: {
     fontFamily: 'Dangrek-Regular',
-    fontSize: 20,
-    color: 'white',
-    textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 15,
-    paddingBottom: 75,
+    fontSize: 18.5,
+    color: '#D9ECF7',
+    textAlign: 'left',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: {width: -1, height: 4},
+    textShadowRadius: 8,
+    lineHeight: 27,
+    width: 350,
   },
   descriptionTH: {
     fontFamily: 'Sarabun-Bold',
+    fontWeight: 'bold',
     fontSize: 20,
+    color: '#D9ECF7',
+    textAlign: 'left',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: {width: -1, height: 4},
+    textShadowRadius: 8,
+    lineHeight: 30,
+    width: 350,
+  },
+  comName: {
+    fontFamily: 'Dangrek-Regular',
+    fontSize: 32,
     color: 'white',
     textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 15,
-    paddingBottom: 75,
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: {width: -1, height: 4},
+    textShadowRadius: 8,
   },
   sciName: {
     fontFamily: 'Dangrek-Regular',
     fontSize: 18.5,
-    color: 'orange',
+    top: -10,
+    color: '#0F4369',
     textAlign: 'center',
   },
   topContainer: {
@@ -216,7 +269,14 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-
+  },
+  langContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   arrow: {
     flex: 1,
