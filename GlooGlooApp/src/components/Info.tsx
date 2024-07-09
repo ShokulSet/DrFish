@@ -17,6 +17,9 @@ import Tts from 'react-native-tts';
 import SVGTH from '../../assets/svg/th.svg';
 import SVGEN from '../../assets/svg/en.svg';
 
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+
+
 const updateFish = (id: number) => {
   getDBconnection().then((db) => {
     updateFishDB(db, id, 1).then(([results]) => {
@@ -43,7 +46,7 @@ const stopReading = () => {
 }
 
 function InfoScreen({navigation, route}: {navigation: any, route: any}) {
-  const { id } = route.params;
+  const { id, unlocked } = route.params;
   const [lang, setLang] = useState<'en' | 'th'>('en');
   const [name, setName] = useState('');
   const [scientificName, setScientificName] = useState('');
@@ -93,11 +96,73 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
 
             </View>
 
-            <Text
-              style={lang === 'en' ? styles.titleInfoEN : styles.titleInfoTH}
-            >
-              {lang === 'en' ? 'DECK' : 'สารานุกรม'}  
-            </Text>
+            { lang === 'en' && !unlocked ?
+              <Animated.View
+                entering={FadeIn}
+                exiting={FadeOut}
+              >
+                <Text
+                  style={styles.titleInfoEN}
+                >
+                  DECK
+                </Text>
+
+              </Animated.View>
+              :
+              <></>
+            }
+
+            { lang === 'th' && !unlocked ?
+              <Animated.View
+                entering={FadeIn}
+                exiting={FadeOut}
+              >
+                <Text
+                  style={styles.titleInfoTH}
+                >
+                  สารานุกรม
+                </Text>
+              </Animated.View>
+              :
+              <></>
+            }
+
+            { lang === 'en' && unlocked ?
+              <Animated.View
+                entering={FadeIn}
+                exiting={FadeOut}
+              >
+                <Text
+                  style={[
+                    styles.titleInfoEN,
+                    {fontSize: 22}
+                  ]}
+                >
+                  New Fish Discovered!
+                </Text>
+
+              </Animated.View>
+              :
+              <></>
+            }
+
+            { lang === 'th' && unlocked ?
+              <Animated.View
+                entering={FadeIn}
+                exiting={FadeOut}
+              >
+                <Text
+                  style={[styles.titleInfoTH,
+                    {fontSize: 26}
+                  
+                  ]}
+                >
+                  การค้นพบใหม่!
+                </Text>
+              </Animated.View>
+              :
+              <></>
+            }
 
             <View
               style={styles.langContainer}
@@ -139,17 +204,36 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
             ({scientificName})
           </Text>
 
-          {lang === 'en' ? 
-            <Text
-              style={styles.descriptionEN}
+          {lang === 'en' ?
+            <Animated.View
+              entering={FadeIn}
+              exiting={FadeOut}
             >
-              {infoEN}
-            </Text> : 
-            <Text
-              style={styles.descriptionTH}
+              <Text
+                style={styles.descriptionEN}
+              >
+                {infoEN}
+              </Text>
+              
+            </Animated.View>
+            :
+            <></>
+          }
+
+          {lang === 'th' ? 
+            <Animated.View
+              entering={FadeIn}
+              exiting={FadeOut}
             >
-              {infoTH}
-            </Text>
+              <Text
+                style={styles.descriptionTH}
+              >
+                {infoTH}
+              </Text>
+              
+            </Animated.View>
+            :
+            <></>
           }
 
 
@@ -217,13 +301,13 @@ const styles = StyleSheet.create({
   },
   titleInfoTH: {
     fontFamily: 'Mitr-Bold',
-    fontSize: 32,
+    fontSize: 36,
     color: 'black',
     textAlign: 'center',
   },
   descriptionEN: {
     fontFamily: 'Dangrek-Regular',
-    fontSize: 18.5,
+    fontSize: 20,
     color: '#D9ECF7',
     textAlign: 'left',
     textShadowColor: 'rgba(0, 0, 0, 0.4)',
@@ -234,7 +318,6 @@ const styles = StyleSheet.create({
   },
   descriptionTH: {
     fontFamily: 'Mitr-Medium',
-    // fontWeight: 'bold',
     fontSize: 20,
     color: '#D9ECF7',
     textAlign: 'left',
@@ -263,6 +346,7 @@ const styles = StyleSheet.create({
   topContainer: {
     display: 'flex',
     justifyContent: 'space-between',
+    height: 80,
     alignItems: 'center',
     flexDirection: 'row',
     gap: 20,

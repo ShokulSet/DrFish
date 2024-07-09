@@ -29,7 +29,7 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
       });
     };
     const onPressedNext = async () => {
-      navigation.navigate('InfoScreen', { label: label, id: id});
+      navigation.navigate('InfoScreen', { label: label, id: id, unlocked: true });
     };
 
   
