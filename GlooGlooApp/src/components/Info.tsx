@@ -31,11 +31,16 @@ const updateFish = (id: number) => {
 }
 
 const readDescription = (isEn: boolean,description: string) => {
-  Tts.setDefaultLanguage(isEn ? 'en-EN' : 'th-TH');
+  //console.log(description);
+  Tts.stop();
+  Tts.setDefaultLanguage(isEn ? 'en-IE' : 'th-TH');
   Tts.setDefaultRate(0.5);
   Tts.speak(description);
 }
 
+const stopReading = () => {
+  Tts.stop();
+}
 
 function InfoScreen({navigation, route}: {navigation: any, route: any}) {
   const { id } = route.params;
@@ -77,7 +82,10 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
               style={styles.arrowContainer}
             >
               <Pressable
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                  stopReading();
+                  navigation.goBack();
+                }}
                 style={styles.arrow}
               >
                 <AntDesign name='left' color={'white'} size={25} />
