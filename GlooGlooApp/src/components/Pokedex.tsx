@@ -2,22 +2,36 @@ import { FlatList, Image, ImageBackground, Pressable, SafeAreaView, StatusBar, S
 import { useEffect, useState } from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import { getDBconnection, getFishes, searchFishes, updateFishDB } from '../services/DBManager';
+import { getDBconnection, getAllFishes, searchFishes, updateFishDB, getAllFound } from '../services/DBManager';
 
 import fish_images from '../../assets/fish_image';
 import LinearGradient from 'react-native-linear-gradient';
 import SearchBar from './SearchBar';
 import CheckBox from './CheckBox';
+import { SQLiteDatabase } from 'react-native-sqlite-storage';
 
 function PokedexScreen({ navigation }: any) {
   const [fishes, setFishes] = useState<any>([]);
   const [search, setSearch] = useState('');
   const [found, setFound] = useState(false);
 
-  useEffect(() => {
+  const [allFishCount, setAllFishCount] = useState(0);
+  const [fishCount, setFishCount] = useState(0);
+
+  function updateCount(db: SQLiteDatabase) {
+    getAllFishes(db).then(([result]) => {
+      setAllFishCount(result.rows.length);
+    })
+    getAllFound(db).then(([results]) => {
+      setFishCount(results.rows.length);
+    })
+  }
+
+  function updateFishArray() {
     getDBconnection().then((db) => {
+      updateCount(db);
       if (search === '') {
-      getFishes(db).then(([results]) => {
+      getAllFishes(db).then(([results]) => {
         let fishArray = [];
         for (let i = 0; i < results.rows.length; i++) {
           fishArray.push(results.rows.item(i));
@@ -58,7 +72,14 @@ function PokedexScreen({ navigation }: any) {
     }).catch((error) =>
       console.error(error)
     )
+  }
 
+  // const tabListener = navigation.addListener('tabPress', () => {
+  //   updateFishArray();
+  // });
+  useEffect(() => {
+    // update fishes when change tabs
+    updateFishArray();
   }, [search, found]);
 
   return (
@@ -71,7 +92,17 @@ function PokedexScreen({ navigation }: any) {
           style={styles.topContainer}
         >
           <SearchBar search={search} setSearch={setSearch} />
-          <CheckBox check={found} setCheck={setFound} whenCheck='Found' whenNotCheck='not Found' />
+          <View
+            style={styles.rowContainer}
+          >
+            <CheckBox check={found} setCheck={setFound} whenCheck='Found' whenNotCheck='All' />
+            <Text
+              style={styles.progressionText}
+            >
+              {Math.floor(fishCount / allFishCount)}% ({fishCount}/{allFishCount})
+            </Text>
+
+          </View>
         </View>
         
         <FlatList
@@ -132,6 +163,11 @@ const Item = (item: any) => {
 
 
 const styles = StyleSheet.create({
+  rowContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
@@ -140,8 +176,8 @@ const styles = StyleSheet.create({
   topContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 20,
-    paddingBottom: 25,
+    gap: 10,
+    paddingBottom: 5,
 
     },
   linearGradient: {
@@ -175,6 +211,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 15,
+  },
+  progressionText: {
+    fontFamily: 'Dangrek-Regular',
+    fontSize: 20,
+    color: '#0F1035',
   },
   lockIcon: {
     position: 'absolute',

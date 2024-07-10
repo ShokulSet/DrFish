@@ -4,16 +4,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 function SearchBar({search, setSearch}: {search: string, setSearch: (search: string) => void} ) {
     return (
-        <View style={styles.searchBarContainer}>
-            <View style={styles.searchInputContainer}>
-                <AntDesign name="search1" size={25} color='black' style={styles.searchIcon} />
-                <TextInput
-                    placeholder='Looking for a fish?'
-                    value={search}
-                    onChangeText={setSearch}
-                    style={styles.searchBar}
-                />
-            </View>
+        <View style={styles.searchInputContainer}>
+            <AntDesign name="search1" size={25} color='black' style={styles.searchIcon} />
+            <TextInput
+                placeholder='Looking for a fish?'
+                value={search}
+                onChangeText={setSearch}
+                style={styles.searchBar}
+            />
         </View>
     );
 }
@@ -37,10 +35,7 @@ const styles = {
     },
     searchIcon: {
         position: 'absolute',
-        right: 20,
-    },
-    searchBarContainer: {
-        padding: 10,
+        right: 15,
     },
     searchInputContainer: {
         flexDirection: 'row',

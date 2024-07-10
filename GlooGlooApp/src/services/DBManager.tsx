@@ -8,7 +8,7 @@ export const getDBconnection = async () => {
   return openDatabase({ name: dbname , location: 'default', createFromLocation: 1 });
 }
   
-export const getFishes = async (db: SQLiteDatabase) => {
+export const getAllFishes = async (db: SQLiteDatabase) => {
   const selectQuery = `SELECT * FROM ${tableName}`;
   return db.executeSql(selectQuery)
 };
@@ -36,3 +36,11 @@ export const updateFishDB = (db: SQLiteDatabase, id: number, found: number) => {
   WHERE id = ${id}`;
   return db.executeSql(updateQuery);
 };
+
+export const getAllFound = (db: SQLiteDatabase) => {
+  const query =
+  `SELECT *
+  FROM ${tableName}
+  WHERE found = 1`;
+  return db.executeSql(query);
+}

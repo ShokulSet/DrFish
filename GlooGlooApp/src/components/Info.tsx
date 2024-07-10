@@ -104,7 +104,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
                 <Text
                   style={styles.titleInfoEN}
                 >
-                  DECK
+                  Deck
                 </Text>
 
               </Animated.View>
@@ -138,7 +138,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
                     {fontSize: 22}
                   ]}
                 >
-                  New Fish Discovered!
+                  Creature Discovered!
                 </Text>
 
               </Animated.View>
@@ -157,7 +157,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
                   
                   ]}
                 >
-                  การค้นพบใหม่!
+                  เจอแล้ว!
                 </Text>
               </Animated.View>
               :

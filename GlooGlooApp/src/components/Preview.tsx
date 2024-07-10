@@ -12,6 +12,7 @@ import Share from 'react-native-share';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { getDBconnection } from '../services/DBManager';
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const { photo, label, id } = route.params;
