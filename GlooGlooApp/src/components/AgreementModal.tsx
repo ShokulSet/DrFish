@@ -51,22 +51,26 @@ const styles = StyleSheet.create({
     fontFamily: 'Mitr-Bold',
     fontSize: 20,
     textAlign: 'center',
+    color: 'black',
   },
   th: {
     fontFamily: 'Mitr-Medium',
-    fontSize: 16,
+    fontSize: 12,
     textAlign: 'center',
+    color: 'gray',
   },
   enTitle: {
     fontFamily: 'Dangrek-Regular',
     fontSize: 20,
     textAlign: 'center',
+    color: 'black',
   },
   en: {
     fontFamily: 'Dangrek-Regular',
-    fontSize: 16,
+    fontSize: 12,
     textAlign: 'center',
-    lineHeight: 20
+    lineHeight: 20,
+    color: 'gray',
   },
   modalView: {
     margin: 20,
