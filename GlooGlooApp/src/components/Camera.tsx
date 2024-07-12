@@ -18,6 +18,7 @@ import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
 import { getDBconnection, getFishLabel } from '../services/DBManager';
+import AgreementModal from './AgreementModal';
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -38,7 +39,7 @@ function CameraScreen({ navigation }: any) {
     const [value, setValue] = useState(0)
     const camera = useRef<Camera>(null)
     const onTakePicturePressed = async () => {
-        const photo = await camera.current?.takePhoto({
+      const photo = await camera.current?.takePhoto({
           enableShutterSound: false,
           enablePrecapture: true,
           qualityPrioritization: 'quality'
@@ -117,6 +118,7 @@ function CameraScreen({ navigation }: any) {
 
     return (
       <View style={styles.centeredView}>
+        <AgreementModal />
         {hasPermission && device != null ? (
           <Camera
             ref={camera}
