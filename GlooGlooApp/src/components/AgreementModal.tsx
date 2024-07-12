@@ -33,7 +33,7 @@ const App = () => {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>I understand</Text>
+              <Text style={[styles.enTitle, {color: 'white'}]}>I understand</Text>
             </Pressable>
           </View>
         </View>
