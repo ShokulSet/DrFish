@@ -12,32 +12,33 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		22DC568E355B4E24897D7531 /* Mitr-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3F0E6C400E845E59C1DBE38 /* Mitr-Bold.ttf */; };
+		23BB4C8949104FED91AFAB78 /* Sarabun-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB0BE1263FB44FF689B0BE6C /* Sarabun-ExtraLightItalic.ttf */; };
+		2C2DF0AE4CBB48CC8FFDAC51 /* Mitr-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1308BD397DA4DD394DAECE6 /* Mitr-Light.ttf */; };
+		373688DA07D7D85A055949F1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A2D252467F27984312DC9E40 /* PrivacyInfo.xcprivacy */; };
+		53519CC89C06448AB4171832 /* Mitr-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 411A6F59E7C7403DB3EB9E84 /* Mitr-Medium.ttf */; };
+		573EA5DA2A7940E989DB45A1 /* Sarabun-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A6747D39ABD424B9581A762 /* Sarabun-ThinItalic.ttf */; };
+		587C903472824BB785A845BA /* Sarabun-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EA36D9D32B7469EB23B8EED /* Sarabun-ExtraLight.ttf */; };
+		614B5150F15F4EA69EC1251B /* Sarabun-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E198B6726EE947A5B0B9EF0E /* Sarabun-Light.ttf */; };
+		633D3BDDDD174B02B389A3C1 /* Mitr-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C53E68AD015492BA4A9354B /* Mitr-SemiBold.ttf */; };
+		660A9032F26740598FB0F8BD /* Sarabun-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 615298F1203740B19B35344F /* Sarabun-SemiBoldItalic.ttf */; };
+		67B0560EFF84481FB9059296 /* Mitr-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4E017945EF144DD87B87FC7 /* Mitr-Regular.ttf */; };
+		6DA51DA16CA54FFAA4E78EC1 /* Mitr-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0F0DA52F6644E45B338AD0A /* Mitr-ExtraLight.ttf */; };
+		6F1E967AC48246FEB9003CF8 /* Sarabun-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50F0BD211602483FA29C7480 /* Sarabun-Italic.ttf */; };
+		71207CD16839412FABF72C85 /* Sarabun-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D06225D53434DCDBA4182AA /* Sarabun-Bold.ttf */; };
+		72F40CA94CDE4963910C98F7 /* Dangrek-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79F8B465F92346E59817A5B6 /* Dangrek-Regular.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-GlooGlooApp-GlooGlooAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-GlooGlooApp-GlooGlooAppTests.a */; };
+		7C7A6132145E4CC18A5E040C /* Sarabun-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FBB0BE98FB847128E1D11AA /* Sarabun-Regular.ttf */; };
+		8060C5830A2442AEBADDCBDB /* Sarabun-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A5ED610F6F6421EB4E7EE39 /* Sarabun-Thin.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A176E46CC1EB4468B67C51A0 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 080AD7180F8640CDB2082D68 /* BootSplash.storyboard */; };
-		72F40CA94CDE4963910C98F7 /* Dangrek-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79F8B465F92346E59817A5B6 /* Dangrek-Regular.ttf */; };
-		22DC568E355B4E24897D7531 /* Mitr-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3F0E6C400E845E59C1DBE38 /* Mitr-Bold.ttf */; };
-		6DA51DA16CA54FFAA4E78EC1 /* Mitr-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0F0DA52F6644E45B338AD0A /* Mitr-ExtraLight.ttf */; };
-		2C2DF0AE4CBB48CC8FFDAC51 /* Mitr-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1308BD397DA4DD394DAECE6 /* Mitr-Light.ttf */; };
-		53519CC89C06448AB4171832 /* Mitr-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 411A6F59E7C7403DB3EB9E84 /* Mitr-Medium.ttf */; };
-		67B0560EFF84481FB9059296 /* Mitr-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4E017945EF144DD87B87FC7 /* Mitr-Regular.ttf */; };
-		633D3BDDDD174B02B389A3C1 /* Mitr-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C53E68AD015492BA4A9354B /* Mitr-SemiBold.ttf */; };
-		71207CD16839412FABF72C85 /* Sarabun-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D06225D53434DCDBA4182AA /* Sarabun-Bold.ttf */; };
 		AD43171B37924A78A30F8984 /* Sarabun-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31DEABF252264767B78B2A22 /* Sarabun-BoldItalic.ttf */; };
-		F373CCA5F9C2440BB37A4443 /* Sarabun-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43CFBAC7B8F349F68F9FCB2F /* Sarabun-ExtraBold.ttf */; };
 		C402C08CDFC245A7972A162D /* Sarabun-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 800796836318471295D9686E /* Sarabun-ExtraBoldItalic.ttf */; };
-		587C903472824BB785A845BA /* Sarabun-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EA36D9D32B7469EB23B8EED /* Sarabun-ExtraLight.ttf */; };
-		23BB4C8949104FED91AFAB78 /* Sarabun-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB0BE1263FB44FF689B0BE6C /* Sarabun-ExtraLightItalic.ttf */; };
-		6F1E967AC48246FEB9003CF8 /* Sarabun-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50F0BD211602483FA29C7480 /* Sarabun-Italic.ttf */; };
-		614B5150F15F4EA69EC1251B /* Sarabun-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E198B6726EE947A5B0B9EF0E /* Sarabun-Light.ttf */; };
-		F280604F2841442CBCD602DE /* Sarabun-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 161386B780184B7A90A720FF /* Sarabun-LightItalic.ttf */; };
-		EF14C7135C4F436EA66FC051 /* Sarabun-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73E7A79FC4584E62BC70DC75 /* Sarabun-Medium.ttf */; };
-		D4AAF0F44A0C4713B27D0556 /* Sarabun-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEC4951053E4DD996B39DFC /* Sarabun-MediumItalic.ttf */; };
-		7C7A6132145E4CC18A5E040C /* Sarabun-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FBB0BE98FB847128E1D11AA /* Sarabun-Regular.ttf */; };
 		D097079A138D4D51A2FE5B15 /* Sarabun-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F1F0D7FD18F4D7FB13451E4 /* Sarabun-SemiBold.ttf */; };
-		660A9032F26740598FB0F8BD /* Sarabun-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 615298F1203740B19B35344F /* Sarabun-SemiBoldItalic.ttf */; };
-		8060C5830A2442AEBADDCBDB /* Sarabun-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A5ED610F6F6421EB4E7EE39 /* Sarabun-Thin.ttf */; };
-		573EA5DA2A7940E989DB45A1 /* Sarabun-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A6747D39ABD424B9581A762 /* Sarabun-ThinItalic.ttf */; };
+		D4AAF0F44A0C4713B27D0556 /* Sarabun-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEC4951053E4DD996B39DFC /* Sarabun-MediumItalic.ttf */; };
+		EF14C7135C4F436EA66FC051 /* Sarabun-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73E7A79FC4584E62BC70DC75 /* Sarabun-Medium.ttf */; };
+		F280604F2841442CBCD602DE /* Sarabun-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 161386B780184B7A90A720FF /* Sarabun-LightItalic.ttf */; };
+		F373CCA5F9C2440BB37A4443 /* Sarabun-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43CFBAC7B8F349F68F9FCB2F /* Sarabun-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,44 +55,45 @@
 		00E356EE1AD99517003FC87E /* GlooGlooAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlooGlooAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* GlooGlooAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlooGlooAppTests.m; sourceTree = "<group>"; };
+		080AD7180F8640CDB2082D68 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = GlooGlooApp/BootSplash.storyboard; sourceTree = "<group>"; };
+		0A5ED610F6F6421EB4E7EE39 /* Sarabun-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Thin.ttf"; path = "../assets/fonts/Sarabun-Thin.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GlooGlooApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlooGlooApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GlooGlooApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = GlooGlooApp/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GlooGlooApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GlooGlooApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GlooGlooApp/main.m; sourceTree = "<group>"; };
+		161386B780184B7A90A720FF /* Sarabun-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-LightItalic.ttf"; path = "../assets/fonts/Sarabun-LightItalic.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-GlooGlooApp-GlooGlooAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GlooGlooApp-GlooGlooAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6747D39ABD424B9581A762 /* Sarabun-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-ThinItalic.ttf"; path = "../assets/fonts/Sarabun-ThinItalic.ttf"; sourceTree = "<group>"; };
+		31DEABF252264767B78B2A22 /* Sarabun-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-BoldItalic.ttf"; path = "../assets/fonts/Sarabun-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-GlooGlooApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlooGlooApp.debug.xcconfig"; path = "Target Support Files/Pods-GlooGlooApp/Pods-GlooGlooApp.debug.xcconfig"; sourceTree = "<group>"; };
+		3BEC4951053E4DD996B39DFC /* Sarabun-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-MediumItalic.ttf"; path = "../assets/fonts/Sarabun-MediumItalic.ttf"; sourceTree = "<group>"; };
+		411A6F59E7C7403DB3EB9E84 /* Mitr-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mitr-Medium.ttf"; path = "../assets/fonts/Mitr-Medium.ttf"; sourceTree = "<group>"; };
+		43CFBAC7B8F349F68F9FCB2F /* Sarabun-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-ExtraBold.ttf"; path = "../assets/fonts/Sarabun-ExtraBold.ttf"; sourceTree = "<group>"; };
+		50F0BD211602483FA29C7480 /* Sarabun-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Italic.ttf"; path = "../assets/fonts/Sarabun-Italic.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-GlooGlooApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlooGlooApp.release.xcconfig"; path = "Target Support Files/Pods-GlooGlooApp/Pods-GlooGlooApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-GlooGlooApp-GlooGlooAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlooGlooApp-GlooGlooAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GlooGlooApp-GlooGlooAppTests/Pods-GlooGlooApp-GlooGlooAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-GlooGlooApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GlooGlooApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		615298F1203740B19B35344F /* Sarabun-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-SemiBoldItalic.ttf"; path = "../assets/fonts/Sarabun-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		6D06225D53434DCDBA4182AA /* Sarabun-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Bold.ttf"; path = "../assets/fonts/Sarabun-Bold.ttf"; sourceTree = "<group>"; };
+		6EA36D9D32B7469EB23B8EED /* Sarabun-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-ExtraLight.ttf"; path = "../assets/fonts/Sarabun-ExtraLight.ttf"; sourceTree = "<group>"; };
+		6FBB0BE98FB847128E1D11AA /* Sarabun-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Regular.ttf"; path = "../assets/fonts/Sarabun-Regular.ttf"; sourceTree = "<group>"; };
+		73E7A79FC4584E62BC70DC75 /* Sarabun-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Medium.ttf"; path = "../assets/fonts/Sarabun-Medium.ttf"; sourceTree = "<group>"; };
+		79F8B465F92346E59817A5B6 /* Dangrek-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Dangrek-Regular.ttf"; path = "../assets/fonts/Dangrek-Regular.ttf"; sourceTree = "<group>"; };
+		800796836318471295D9686E /* Sarabun-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-ExtraBoldItalic.ttf"; path = "../assets/fonts/Sarabun-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GlooGlooApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-GlooGlooApp-GlooGlooAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlooGlooApp-GlooGlooAppTests.release.xcconfig"; path = "Target Support Files/Pods-GlooGlooApp-GlooGlooAppTests/Pods-GlooGlooApp-GlooGlooAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		8C53E68AD015492BA4A9354B /* Mitr-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mitr-SemiBold.ttf"; path = "../assets/fonts/Mitr-SemiBold.ttf"; sourceTree = "<group>"; };
+		9F1F0D7FD18F4D7FB13451E4 /* Sarabun-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-SemiBold.ttf"; path = "../assets/fonts/Sarabun-SemiBold.ttf"; sourceTree = "<group>"; };
+		A2D252467F27984312DC9E40 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = GlooGlooApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A3F0E6C400E845E59C1DBE38 /* Mitr-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mitr-Bold.ttf"; path = "../assets/fonts/Mitr-Bold.ttf"; sourceTree = "<group>"; };
+		A4E017945EF144DD87B87FC7 /* Mitr-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mitr-Regular.ttf"; path = "../assets/fonts/Mitr-Regular.ttf"; sourceTree = "<group>"; };
+		C0F0DA52F6644E45B338AD0A /* Mitr-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mitr-ExtraLight.ttf"; path = "../assets/fonts/Mitr-ExtraLight.ttf"; sourceTree = "<group>"; };
+		D1308BD397DA4DD394DAECE6 /* Mitr-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mitr-Light.ttf"; path = "../assets/fonts/Mitr-Light.ttf"; sourceTree = "<group>"; };
+		DB0BE1263FB44FF689B0BE6C /* Sarabun-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-ExtraLightItalic.ttf"; path = "../assets/fonts/Sarabun-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		E198B6726EE947A5B0B9EF0E /* Sarabun-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Light.ttf"; path = "../assets/fonts/Sarabun-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		080AD7180F8640CDB2082D68 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "GlooGlooApp/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		79F8B465F92346E59817A5B6 /* Dangrek-Regular.ttf */ = {isa = PBXFileReference; name = "Dangrek-Regular.ttf"; path = "../assets/fonts/Dangrek-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A3F0E6C400E845E59C1DBE38 /* Mitr-Bold.ttf */ = {isa = PBXFileReference; name = "Mitr-Bold.ttf"; path = "../assets/fonts/Mitr-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C0F0DA52F6644E45B338AD0A /* Mitr-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Mitr-ExtraLight.ttf"; path = "../assets/fonts/Mitr-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D1308BD397DA4DD394DAECE6 /* Mitr-Light.ttf */ = {isa = PBXFileReference; name = "Mitr-Light.ttf"; path = "../assets/fonts/Mitr-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		411A6F59E7C7403DB3EB9E84 /* Mitr-Medium.ttf */ = {isa = PBXFileReference; name = "Mitr-Medium.ttf"; path = "../assets/fonts/Mitr-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A4E017945EF144DD87B87FC7 /* Mitr-Regular.ttf */ = {isa = PBXFileReference; name = "Mitr-Regular.ttf"; path = "../assets/fonts/Mitr-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8C53E68AD015492BA4A9354B /* Mitr-SemiBold.ttf */ = {isa = PBXFileReference; name = "Mitr-SemiBold.ttf"; path = "../assets/fonts/Mitr-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6D06225D53434DCDBA4182AA /* Sarabun-Bold.ttf */ = {isa = PBXFileReference; name = "Sarabun-Bold.ttf"; path = "../assets/fonts/Sarabun-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		31DEABF252264767B78B2A22 /* Sarabun-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-BoldItalic.ttf"; path = "../assets/fonts/Sarabun-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		43CFBAC7B8F349F68F9FCB2F /* Sarabun-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Sarabun-ExtraBold.ttf"; path = "../assets/fonts/Sarabun-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		800796836318471295D9686E /* Sarabun-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-ExtraBoldItalic.ttf"; path = "../assets/fonts/Sarabun-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6EA36D9D32B7469EB23B8EED /* Sarabun-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Sarabun-ExtraLight.ttf"; path = "../assets/fonts/Sarabun-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DB0BE1263FB44FF689B0BE6C /* Sarabun-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-ExtraLightItalic.ttf"; path = "../assets/fonts/Sarabun-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		50F0BD211602483FA29C7480 /* Sarabun-Italic.ttf */ = {isa = PBXFileReference; name = "Sarabun-Italic.ttf"; path = "../assets/fonts/Sarabun-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E198B6726EE947A5B0B9EF0E /* Sarabun-Light.ttf */ = {isa = PBXFileReference; name = "Sarabun-Light.ttf"; path = "../assets/fonts/Sarabun-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		161386B780184B7A90A720FF /* Sarabun-LightItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-LightItalic.ttf"; path = "../assets/fonts/Sarabun-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		73E7A79FC4584E62BC70DC75 /* Sarabun-Medium.ttf */ = {isa = PBXFileReference; name = "Sarabun-Medium.ttf"; path = "../assets/fonts/Sarabun-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3BEC4951053E4DD996B39DFC /* Sarabun-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-MediumItalic.ttf"; path = "../assets/fonts/Sarabun-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6FBB0BE98FB847128E1D11AA /* Sarabun-Regular.ttf */ = {isa = PBXFileReference; name = "Sarabun-Regular.ttf"; path = "../assets/fonts/Sarabun-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9F1F0D7FD18F4D7FB13451E4 /* Sarabun-SemiBold.ttf */ = {isa = PBXFileReference; name = "Sarabun-SemiBold.ttf"; path = "../assets/fonts/Sarabun-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		615298F1203740B19B35344F /* Sarabun-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-SemiBoldItalic.ttf"; path = "../assets/fonts/Sarabun-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0A5ED610F6F6421EB4E7EE39 /* Sarabun-Thin.ttf */ = {isa = PBXFileReference; name = "Sarabun-Thin.ttf"; path = "../assets/fonts/Sarabun-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1A6747D39ABD424B9581A762 /* Sarabun-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Sarabun-ThinItalic.ttf"; path = "../assets/fonts/Sarabun-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				080AD7180F8640CDB2082D68 /* BootSplash.storyboard */,
+				A2D252467F27984312DC9E40 /* PrivacyInfo.xcprivacy */,
 			);
 			name = GlooGlooApp;
 			sourceTree = "<group>";
@@ -199,7 +202,7 @@
 			sourceTree = "<group>";
 		};
 		C2E4408D222B420E99B4A2F9 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				79F8B465F92346E59817A5B6 /* Dangrek-Regular.ttf */,
 				A3F0E6C400E845E59C1DBE38 /* Mitr-Bold.ttf */,
@@ -226,8 +229,8 @@
 				1A6747D39ABD424B9581A762 /* Sarabun-ThinItalic.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -348,6 +351,7 @@
 				660A9032F26740598FB0F8BD /* Sarabun-SemiBoldItalic.ttf in Resources */,
 				8060C5830A2442AEBADDCBDB /* Sarabun-Thin.ttf in Resources */,
 				573EA5DA2A7940E989DB45A1 /* Sarabun-ThinItalic.ttf in Resources */,
+				373688DA07D7D85A055949F1 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +653,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -677,6 +681,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -684,7 +689,14 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -721,7 +733,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -741,6 +753,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -748,7 +761,14 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
