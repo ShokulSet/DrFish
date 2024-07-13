@@ -37,6 +37,7 @@
 		D097079A138D4D51A2FE5B15 /* Sarabun-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F1F0D7FD18F4D7FB13451E4 /* Sarabun-SemiBold.ttf */; };
 		D4AAF0F44A0C4713B27D0556 /* Sarabun-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BEC4951053E4DD996B39DFC /* Sarabun-MediumItalic.ttf */; };
 		E58D06552C41C2F100C34B1E /* www in Resources */ = {isa = PBXBuildFile; fileRef = E58D06542C41C2F100C34B1E /* www */; };
+		E58D07192C42C20200C34B1E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = E58D07182C42C20200C34B1E /* Fonts */; };
 		EF14C7135C4F436EA66FC051 /* Sarabun-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73E7A79FC4584E62BC70DC75 /* Sarabun-Medium.ttf */; };
 		F280604F2841442CBCD602DE /* Sarabun-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 161386B780184B7A90A720FF /* Sarabun-LightItalic.ttf */; };
 		F373CCA5F9C2440BB37A4443 /* Sarabun-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43CFBAC7B8F349F68F9FCB2F /* Sarabun-ExtraBold.ttf */; };
@@ -95,6 +96,7 @@
 		DB0BE1263FB44FF689B0BE6C /* Sarabun-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-ExtraLightItalic.ttf"; path = "../assets/fonts/Sarabun-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		E198B6726EE947A5B0B9EF0E /* Sarabun-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Sarabun-Light.ttf"; path = "../assets/fonts/Sarabun-Light.ttf"; sourceTree = "<group>"; };
 		E58D06542C41C2F100C34B1E /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = GlooGlooApp/www; sourceTree = "<group>"; };
+		E58D07182C42C20200C34B1E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 		13B07FAE1A68108700A75B9A /* GlooGlooApp */ = {
 			isa = PBXGroup;
 			children = (
+				E58D07182C42C20200C34B1E /* Fonts */,
 				E58D06542C41C2F100C34B1E /* www */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -339,6 +342,7 @@
 				67B0560EFF84481FB9059296 /* Mitr-Regular.ttf in Resources */,
 				633D3BDDDD174B02B389A3C1 /* Mitr-SemiBold.ttf in Resources */,
 				71207CD16839412FABF72C85 /* Sarabun-Bold.ttf in Resources */,
+				E58D07192C42C20200C34B1E /* Fonts in Resources */,
 				AD43171B37924A78A30F8984 /* Sarabun-BoldItalic.ttf in Resources */,
 				F373CCA5F9C2440BB37A4443 /* Sarabun-ExtraBold.ttf in Resources */,
 				C402C08CDFC245A7972A162D /* Sarabun-ExtraBoldItalic.ttf in Resources */,

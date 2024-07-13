@@ -6,6 +6,8 @@ import {
   Text,
   Image,
   SafeAreaView,
+  NativeAppEventEmitter,
+  NativeModules,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -18,7 +20,6 @@ import SVGTH from '../../assets/svg/th.svg';
 import SVGEN from '../../assets/svg/en.svg';
 
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-
 
 const updateFish = (id: number) => {
   getDBconnection().then((db) => {
@@ -35,10 +36,17 @@ const updateFish = (id: number) => {
 
 const readDescription = (isEn: boolean,description: string) => {
   //console.log(description);
-  Tts.stop();
-  Tts.setDefaultLanguage(isEn ? 'en-IE' : 'th-TH');
-  Tts.setDefaultRate(0.5);
-  Tts.speak(description);
+  Tts.getInitStatus().then(() => {
+    Tts.stop();
+    Tts.setDefaultLanguage(isEn ? 'en-IE' : 'th-TH');
+    Tts.setDefaultRate(0.5);
+    Tts.speak(description);
+  }, (err) => {
+    if (err.code === 'no_engine') {
+      Tts.requestInstallEngine();
+    }
+  })
+
 }
 
 const stopReading = () => {
@@ -52,6 +60,11 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
   const [scientificName, setScientificName] = useState('');
   const [infoEN, setInfoEN] = useState('');
   const [infoTH, setInfoTH] = useState('');
+  Tts.addEventListener('tts-start', (event) => console.log("start", event));
+  Tts.addEventListener('tts-progress', (event) => console.log("progress", event));
+  Tts.addEventListener('tts-finish', (event) => console.log("finish", event));
+  Tts.addEventListener('tts-cancel', (event) => console.log("cancel", event));
+
 
   useEffect(() => {
     getDBconnection().then((db) => {
