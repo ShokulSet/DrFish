@@ -76,106 +76,108 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
       style={styles.container}
       colors={['#DCE9F2', '#94C5E8', '#0C7FD1', '#013154']}
     >
-      <SafeAreaView>
-        <ScrollView>
-          <View
-            style={styles.topContainer}
+      <View
+        style={styles.topContainer}
+      >
+        <View
+          style={styles.arrowContainer}
+        >
+          <Pressable
+            onPress={() => {
+              stopReading();
+              navigation.goBack();
+            }}
+            style={styles.arrow}
           >
-            <View
-              style={styles.arrowContainer}
+            <AntDesign name='left' color={'white'} size={25} />
+          </Pressable>
+
+        </View>
+
+        { lang === 'en' && !unlocked ?
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+          >
+            <Text
+              style={styles.titleInfoEN}
             >
-              <Pressable
-                onPress={() => {
-                  stopReading();
-                  navigation.goBack();
-                }}
-                style={styles.arrow}
-              >
-                <AntDesign name='left' color={'white'} size={25} />
-              </Pressable>
+              Deck
+            </Text>
 
-            </View>
+          </Animated.View>
+          :
+          <></>
+        }
 
-            { lang === 'en' && !unlocked ?
-              <Animated.View
-                entering={FadeIn}
-                exiting={FadeOut}
-              >
-                <Text
-                  style={styles.titleInfoEN}
-                >
-                  Deck
-                </Text>
-
-              </Animated.View>
-              :
-              <></>
-            }
-
-            { lang === 'th' && !unlocked ?
-              <Animated.View
-                entering={FadeIn}
-                exiting={FadeOut}
-              >
-                <Text
-                  style={styles.titleInfoTH}
-                >
-                  สารานุกรม
-                </Text>
-              </Animated.View>
-              :
-              <></>
-            }
-
-            { lang === 'en' && unlocked ?
-              <Animated.View
-                entering={FadeIn}
-                exiting={FadeOut}
-              >
-                <Text
-                  style={[
-                    styles.titleInfoEN,
-                    {fontSize: 22}
-                  ]}
-                >
-                  Creature Discovered!
-                </Text>
-
-              </Animated.View>
-              :
-              <></>
-            }
-
-            { lang === 'th' && unlocked ?
-              <Animated.View
-                entering={FadeIn}
-                exiting={FadeOut}
-              >
-                <Text
-                  style={[styles.titleInfoTH,
-                    {fontSize: 26}
-                  
-                  ]}
-                >
-                  เจอแล้ว!
-                </Text>
-              </Animated.View>
-              :
-              <></>
-            }
-
-            <View
-              style={styles.langContainer}
+        { lang === 'th' && !unlocked ?
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+          >
+            <Text
+              style={styles.titleInfoTH}
             >
-              <Pressable
-                onPress={() => {
-                  setLang(lang === 'en' ? 'th' : 'en');
-                }}
-              >
-                {lang === 'en' ? <SVGEN /> : <SVGTH />}
-              </Pressable>
-            </View>
-          </View>
+              สารานุกรม
+            </Text>
+          </Animated.View>
+          :
+          <></>
+        }
+
+        { lang === 'en' && unlocked ?
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+          >
+            <Text
+              style={[
+                styles.titleInfoEN,
+                {fontSize: 22}
+              ]}
+            >
+              Creature Discovered!
+            </Text>
+
+          </Animated.View>
+          :
+          <></>
+        }
+
+        { lang === 'th' && unlocked ?
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+          >
+            <Text
+              style={[styles.titleInfoTH,
+                {fontSize: 26}
+              
+              ]}
+            >
+              เจอแล้ว!
+            </Text>
+          </Animated.View>
+          :
+          <></>
+        }
+
+        <View
+          style={styles.langContainer}
+        >
+          <Pressable
+            onPress={() => {
+              setLang(lang === 'en' ? 'th' : 'en');
+            }}
+          >
+            {lang === 'en' ? <SVGEN /> : <SVGTH />}
+          </Pressable>
+        </View>
+      </View>
+      <SafeAreaView>
+        <ScrollView
+          style={styles.scroll}
+        >
 
           <View
             style={{
@@ -235,6 +237,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
             :
             <></>
           }
+          <View style={styles.spaceBottom}></View>
 
 
         </ScrollView>
@@ -264,6 +267,14 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    paddingHorizontal: 20,
+    marginBottom: 100,
+    paddingTop: 20,
+  },
+  spaceBottom: {
+    marginBottom: 100,
+  },
   centered: {
     flex: 1,
     justifyContent: 'center',
@@ -291,7 +302,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 20,
   },
   titleInfoEN: {
     fontFamily: 'Dangrek-Regular',
@@ -345,14 +355,13 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     display: 'flex',
+    width: '100%',
+    paddingHorizontal: 20,
     justifyContent: 'space-between',
     height: 80,
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 20,
-    paddingBottom: 25,
-    paddingHorizontal: 10,
-  },
+    },
   arrowContainer: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: 20,

@@ -19,6 +19,7 @@ import { useSharedValue } from 'react-native-worklets-core';
 import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 'react-native';
 import { getDBconnection, getFishLabel } from '../services/DBManager';
 import AgreementModal from './AgreementModal';
+import { AppState } from 'react-native';
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -32,12 +33,37 @@ function modelToString(model: TensorflowModel): string {
 }
 
 function CameraScreen({ navigation }: any) {
-    const device = useCameraDevice('back')
+    let device = useCameraDevice('back')
     const { hasPermission, requestPermission } = useCameraPermission()
     const [photo, setPhoto] = useState<PhotoFile>();
     const [isLive, setIsLive] = useState(false);
     const [value, setValue] = useState(0)
     const camera = useRef<Camera>(null)
+
+    const appState = useRef(AppState.currentState);
+    const [appStateVisible, setAppStateVisible] = useState(appState.current);
+    const [isForeground, setIsForeground] = useState(true);
+  
+    useEffect(() => {
+      const subscription = AppState.addEventListener('change', nextAppState => {
+        if (
+          appState.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          setIsForeground(true);
+        } else {
+          setIsForeground(false);
+        }
+  
+        appState.current = nextAppState;
+        setAppStateVisible(appState.current);
+      });
+  
+      return () => {
+        subscription.remove();
+      };
+    }, []);
+
     const onTakePicturePressed = async () => {
       const photo = await camera.current?.takePhoto({
           enableShutterSound: false,
@@ -124,7 +150,7 @@ function CameraScreen({ navigation }: any) {
             ref={camera}
             device={device}
             style={styles.cameraContainer}
-            isActive={true}
+            isActive={isForeground}
             frameProcessor={frameProcessor}
             pixelFormat="yuv"
             photo={true}

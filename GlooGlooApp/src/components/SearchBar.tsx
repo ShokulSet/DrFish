@@ -32,6 +32,7 @@ const styles = {
         borderColor: 'gray',
         borderRadius: 20,
         backgroundColor: 'white',
+        color: 'gray',
     },
     searchIcon: {
         position: 'absolute',
