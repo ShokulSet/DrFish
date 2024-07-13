@@ -1,4 +1,4 @@
-# GlooGloo
+# DrFish
 Aquarium navigator
 
 ## Init
