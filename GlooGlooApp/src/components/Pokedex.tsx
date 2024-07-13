@@ -171,7 +171,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
-    paddingBottom: 100,
   },
   topContainer: {
     display: 'flex',
@@ -184,7 +183,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
-    borderRadius: 15,
   },
   item: {
     flex: 1,
