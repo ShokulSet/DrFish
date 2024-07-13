@@ -8,7 +8,7 @@ function SearchBar({search, setSearch}: {search: string, setSearch: (search: str
             <AntDesign name="search1" size={25} color='black' style={styles.searchIcon} />
             <TextInput
                 placeholder='Looking for a fish?'
-                placeholderTextColor={'gray'}
+                placeholderTextColor='gray'
                 value={search}
                 onChangeText={setSearch}
                 style={styles.searchBar}

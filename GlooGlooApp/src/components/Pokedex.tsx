@@ -74,11 +74,14 @@ function PokedexScreen({ navigation }: any) {
     )
   }
 
-  // const tabListener = navigation.addListener('tabPress', () => {
-  //   updateFishArray();
-  // });
+
   useEffect(() => {
-    // update fishes when change tabs
+    navigation.addListener('focus', () => {
+      updateFishArray();
+    });
+  }, []);
+  
+  useEffect(() => {
     updateFishArray();
   }, [search, found]);
 
