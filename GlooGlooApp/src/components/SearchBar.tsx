@@ -8,6 +8,7 @@ function SearchBar({search, setSearch}: {search: string, setSearch: (search: str
             <AntDesign name="search1" size={25} color='black' style={styles.searchIcon} />
             <TextInput
                 placeholder='Looking for a fish?'
+                placeholderTextColor={'gray'}
                 value={search}
                 onChangeText={setSearch}
                 style={styles.searchBar}
@@ -27,12 +28,12 @@ const styles = {
     },
     searchBar: {
         fontSize: 16,
+        color: 'gray',
         fontFamily: 'Dangrek-Regular',
         width: '80%',
         borderColor: 'gray',
         borderRadius: 20,
         backgroundColor: 'white',
-        color: 'gray',
     },
     searchIcon: {
         position: 'absolute',
