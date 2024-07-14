@@ -102,7 +102,7 @@ function PokedexScreen({ navigation }: any) {
             <Text
               style={styles.progressionText}
             >
-              {Math.floor(fishCount / allFishCount)}% ({fishCount}/{allFishCount})
+              {Math.floor((fishCount / allFishCount)*100)}% ({fishCount}/{allFishCount})
             </Text>
 
           </View>
