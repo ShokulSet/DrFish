@@ -12,7 +12,6 @@ import {
   TensorflowModel,
   useTensorflowModel,
 } from 'react-native-fast-tflite'
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { useSharedValue } from 'react-native-worklets-core';
@@ -20,6 +19,7 @@ import { Pressable, StyleSheet, Text, View, ActivityIndicator, Switch } from 're
 import { getDBconnection, getFishLabel } from '../services/DBManager';
 import AgreementModal from './AgreementModal';
 import { AppState } from 'react-native';
+import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -83,7 +83,6 @@ function CameraScreen({ navigation }: any) {
 
     const { resize } = useResizePlugin()
     let pred = useSharedValue(0)
-    let isloading = useSharedValue(false)
     const frameProcessor = useFrameProcessor(
       (frame) => {
         'worklet'
@@ -93,7 +92,6 @@ function CameraScreen({ navigation }: any) {
         }
         runAtTargetFps(1, () => {
           'worklet'
-          isloading.value = true
           const resized = resize(frame, {
             scale: {
               width: 224,
@@ -114,7 +112,7 @@ function CameraScreen({ navigation }: any) {
           // console.log(`Prediction: ${maxIndex}`)
         })
       },
-      [pred, isloading, actualModel]
+      [pred, actualModel]
     )
     
     const [label, setLabel] = useState('')
@@ -173,20 +171,23 @@ function CameraScreen({ navigation }: any) {
         
         { isLive ? (
           // check if loaded
-          isloading.value ? (
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+            style={{position: 'absolute', alignSelf: "center", top: 10}}
+          >
             <View style={styles.liveContainer}>
               <Text style={{color: 'white', fontFamily:'Dangrek-Regular', fontSize: 30}}>
               {label}
               </Text>
             </View>
-          ) : (
-            <View style={styles.liveContainer}>
-              <Text style={{color: 'white', fontFamily:'Dangrek-Regular', fontSize: 30}}>
-              Loading...
-              </Text>
-            </View>
-          )
+          </Animated.View>
         ) : (
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+            style={{position: 'absolute', alignSelf: "center", bottom: 0}}
+          >
           <View style={styles.buttonBackground}>
             <Pressable
                 onPress={onTakePicturePressed}
@@ -198,6 +199,7 @@ function CameraScreen({ navigation }: any) {
                 ]}
             />
           </View>
+          </Animated.View>
         )}
 
 
@@ -218,9 +220,9 @@ function CameraScreen({ navigation }: any) {
           >
 
             { isLive ? 
-              <FontAwesome5 name="camera" size={30} style={styles.centered} />            
+              <FontAwesome5 name="video" size={30} style={styles.centered} />            
             :
-              <FontAwesome5 name="video" size={30} style={styles.centered} />
+              <FontAwesome5 name="camera" size={30} style={styles.centered} />
             }
           </Pressable>
         </View>
