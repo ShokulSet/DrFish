@@ -16,6 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import fish_imgages from '../../assets/fish_image';
 import { ScrollView } from 'react-native-gesture-handler';
 import Tts from 'react-native-tts';
+import { BackHandler } from "react-native";
 import SVGTH from '../../assets/svg/th.svg';
 import SVGEN from '../../assets/svg/en.svg';
 
@@ -32,6 +33,10 @@ const updateFish = (id: number) => {
     console.error(error)
   )
 
+}
+
+function handleBackButtonClick() {
+  Tts.stop();
 }
 
 const readDescription = (isEn: boolean,description: string) => {
@@ -65,6 +70,12 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
   Tts.addEventListener('tts-finish', (event) => console.log("finish", event));
   Tts.addEventListener('tts-cancel', (event) => console.log("cancel", event));
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
 
   useEffect(() => {
     getDBconnection().then((db) => {
@@ -180,6 +191,7 @@ function InfoScreen({navigation, route}: {navigation: any, route: any}) {
         >
           <Pressable
             onPress={() => {
+              Tts.stop();
               setLang(lang === 'en' ? 'th' : 'en');
             }}
           >
