@@ -36,8 +36,14 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
     const onPressedShare = async () => {
       try{
         await Share.open({url: `file://${photo.path}`});
+        showMessage({
+          message: "Image Shared",
+          type: "info",
+          backgroundColor: '#0F1035',
+          duration: 1000,
+        });
       } catch (e) {
-        console.error(e);
+        console.log(e);
       }
     };
 
