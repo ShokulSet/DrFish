@@ -70,7 +70,7 @@ function CameraScreen({ navigation }: any) {
           enablePrecapture: true,
           qualityPrioritization: 'quality'
         });
-        navigation.navigate('PreviewScreen', { photo: photo, label: label, id: pred.value});
+        navigation.navigate('PreviewScreen', { photo: photo, label: label, id: predIndex.value, logit: predLogit.value });
     }
 
     const model = useTensorflowModel(require('../../assets/model/model.tflite'))
@@ -82,7 +82,8 @@ function CameraScreen({ navigation }: any) {
     }, [actualModel])
 
     const { resize } = useResizePlugin()
-    let pred = useSharedValue(0)
+    let predIndex = useSharedValue(0)
+    let predLogit = useSharedValue(0)
     const frameProcessor = useFrameProcessor(
       (frame) => {
         'worklet'
@@ -103,25 +104,31 @@ function CameraScreen({ navigation }: any) {
           const result = actualModel.runSync([resized])
           const logit = result[0]
           let maxIndex = 0
+          let maxLogit = 0
           for (let i = 0; i < logit.length; i++) {
             if (logit[i] > logit[maxIndex]) {
               maxIndex = i
+              maxLogit = logit[i] as number
             }
           }
-          pred.value = maxIndex
-          // console.log(`Prediction: ${maxIndex}`)
+          predIndex.value = maxIndex
+          predLogit.value = maxLogit
+          console.log(`Prediction: ${maxIndex} (${maxLogit})`)
         })
       },
-      [pred, actualModel]
+      [predIndex, predLogit, actualModel]
     )
     
     const [label, setLabel] = useState('')
     useEffect(() => {
       const intervalId = setInterval(() => {
         getDBconnection().then((db) => {
-          getFishLabel(db, pred.value).then(([results]) => {
-            //console.log(results.rows.item(0)["Common name"])
-            setLabel(results.rows.item(0)["CommonName"])
+          getFishLabel(db, predIndex.value).then(([results]) => {
+            if (predLogit.value < 0.04) {
+              setLabel('Not found yet.')
+            } else {
+              setLabel(results.rows.item(0)["CommonName"])
+            }
             })
             .catch((error) => 
             console.error(error)

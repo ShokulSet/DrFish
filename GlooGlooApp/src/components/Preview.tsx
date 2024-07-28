@@ -14,7 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
-    const { photo, label, id } = route.params;
+    const { photo, label, id, logit } = route.params;
     const [isVisible, setIsVisible] = useState(true);
     const toggleVisibility = () => {
       setIsVisible(!isVisible);
@@ -29,10 +29,19 @@ function PreviewScreen({navigation, route}: {navigation: any, route: any}) {
       });
     };
     const onPressedNext = async () => {
-      navigation.navigate('InfoScreen', { label: label, id: id, unlocked: true });
+      if (logit < 0.04) {
+        showMessage({
+          message: "Try Again! No creature found :(",
+          type: "info",
+          backgroundColor: '#0F1035',
+          duration: 1000,
+        });
+      }
+      else {
+        navigation.navigate('InfoScreen', { label: label, id: id, unlocked: true });
+      }
     };
 
-  
     const onPressedShare = async () => {
       try{
         await Share.open({url: `file://${photo.path}`});
