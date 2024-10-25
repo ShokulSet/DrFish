@@ -20,3 +20,9 @@ Or problem with processor
 - Use frameprocessor to actually classify image and send label
 
 - doing dex bar (search, wiki, language mode, tts)
+
+## Credits
+
+- Settpun Laoaree
+- Pakpoom Khongsootthi
+- Chonlana Kruawuthikun
