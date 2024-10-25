@@ -23,6 +23,6 @@ Or problem with processor
 
 ## Credits
 
-- Settpun Laoaree
+- Settapun Laoaree
 - Pakpoom Khongsootthi
 - Chonlana Kruawuthikun
