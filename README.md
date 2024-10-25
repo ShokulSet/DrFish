@@ -1,5 +1,5 @@
 # DrFish
-Aquarium navigator
+Application for enhancing aquarium service, especially knowledge-giving service. Users can use an in-app camera to take images of creatures, then the app will classify their species using AI model, and lastly, the app will show the information of that species in bilingual (TH, EN) text and audio narration.
 
 ## Init
 
